@@ -25,7 +25,6 @@ def create_timetable_image(selected_courses):
     # Set the first row as column headers and drop the first row
     time_slots_file.columns = time_slots_file.iloc[0]
     time_slots_file = time_slots_file[1:]
-    time_slots_file.set_index('Slot', inplace=True)
 
     # Process the timetable to filter by selected courses
     course_slots = {}
@@ -42,7 +41,7 @@ def create_timetable_image(selected_courses):
     overlaps = {}
 
     # Replace time slots with course information
-    for slot in (personalized_timetable.index):
+    for slot in personalized_timetable.index:
         for day in personalized_timetable.columns:
             entries = []
             for code, info in course_slots.items():
@@ -57,7 +56,7 @@ def create_timetable_image(selected_courses):
                 for ent in entries:
                     display += ent[:7]+'/'
                 else:
-                    display = display[:-1] +"\n[Overlap]"
+                    display = display[:-1] +"\n(Clash)"
                 personalized_timetable.at[slot, day] = display
             elif entries:
                 personalized_timetable.at[slot, day] = entries[0]

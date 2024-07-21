@@ -2,37 +2,57 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Course Selection</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IIT Gandhinagar Time Table</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            margin: 40px;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 40px;
+            text-align: center;
+            background-color: #f4f4f9; /* Light grayish background */
+            color: #333; /* Darker text for better readability */
         }
         table {
-            width: 50%;
+            width: 80%; /* Responsive width */
+            margin: 20px auto; /* Center the table */
             border-collapse: collapse;
-            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1); /* Subtle shadow around table */
         }
         th, td {
             border: 1px solid #ccc;
-            padding: 8px;
+            padding: 12px; /* More padding for better spacing */
             text-align: left;
         }
         th {
-            background-color: #f2f2f2;
+            background-color: #0066cc; /* Blue background for headings */
+            color: #ffffff; /* White text color */
         }
         button {
-            padding: 10px 20px;
+            padding: 12px 24px;
             font-size: 16px;
             cursor: pointer;
-            position: sticky;
+            background-color: #28a745; /* Green background */
+            color: white; /* White text */
+            border: none;
+            border-radius: 5px; /* Rounded corners */
+            position: fixed;
             bottom: 30px;
-            right: 0px;
+            right: 30px; /* Position the button at the bottom right */
+        }
+        @media (max-width: 600px) {
+            table {
+                width: 100%;
+            }
+            body {
+                padding: 20px;
+            }
         }
     </style>
 </head>
 <body>
-    <h2>Select Courses</h2>
+    <h1>IIT Gandhinagar Timetable Portal</h1>
+    <h3>Select Your Courses</h3>
     <form action="/generate-timetable" method="post">
         <table>
             <tr>
