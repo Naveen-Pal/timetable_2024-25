@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,21 +15,42 @@
             background-color: #f4f4f9;
             color: #333;
         }
+
+        #search-field {
+            width: 75%;
+            padding: 12px;
+            margin: 20px 0 0 0;
+            font-size: 16px;
+            border: 1px solid black;
+            border-radius: 5px;
+        }
+
+        #search-field:focus {
+            outline: none;
+            border: 1px solid black;
+            border-bottom: 2px solid #0066cc;
+            border-radius: 5px;
+        }
+
         table {
             width: 80%;
             margin: 20px auto;
             border-collapse: collapse;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         }
-        th, td {
+
+        th,
+        td {
             border: 1px solid #ccc;
             padding: 12px;
             text-align: left;
         }
+
         th {
             background-color: #0066cc;
             color: #ffffff;
         }
+
         footer {
             background-color: #000000;
             color: white;
@@ -39,17 +61,21 @@
             flex-wrap: wrap;
             font-size: 14px;
         }
+
         .footer-section {
             margin: 10px 20px;
             text-align: center;
         }
+
         .footer-section a {
             color: #64b2ff;
             text-decoration: none;
         }
+
         .footer-section a:hover {
             text-decoration: underline;
         }
+
         button {
             padding: 12px 24px;
             font-size: 16px;
@@ -62,28 +88,37 @@
             bottom: 10px;
             right: 40px;
         }
+
         a {
             color: #64b2ff;
         }
+
         @media (max-width: 600px) {
             table {
                 width: 100%;
             }
+
             body {
                 padding: 20px;
             }
+
             footer {
                 flex-direction: column;
             }
+
             .footer-section {
                 margin: 10px 0;
             }
         }
     </style>
 </head>
+
 <body>
     <h1>IIT Gandhinagar Timetable Portal</h1>
     <h3>Select Your Courses</h3>
+    <form>
+        <input name="search-field" id="search-field" placeholder="Search for courses ...">
+    </form>
     <form action="/generate-timetable" method="post">
         <table role="table">
             <thead>
@@ -117,5 +152,30 @@
             <p>Developer: Naveen Pal</p>
         </div>
     </footer>
+
+    <script>
+        const searchField = document.getElementById('search-field');
+        const rows = document.querySelectorAll('tbody tr');
+
+        searchField.addEventListener('input', (e) => {
+            const searchValue = e.target.value.toLowerCase();
+            rows.forEach(row => {
+                // const courseCode = row.children[0].textContent.toLowerCase();
+                // if (courseCode.includes(searchValue)) {
+                //     row.style.display = '';
+                // } else {
+                //     row.style.display = 'none';
+                // }
+                const courseName = row.textContent.toLowerCase();
+                if (courseName.includes(searchValue)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+
+            });
+        });
+    </script>
 </body>
+
 </html>
