@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>IIT Gandhinagar Time Table</title>
     <style>
         body {
@@ -10,35 +11,59 @@
             margin: 0;
             padding: 40px;
             text-align: center;
-            background-color: #f4f4f9; /* Light grayish background */
-            color: #333; /* Darker text for better readability */
+            background-color: #f4f4f9;
+            color: #333;
         }
         table {
-            width: 80%; /* Responsive width */
-            margin: 20px auto; /* Center the table */
+            width: 80%;
+            margin: 20px auto;
             border-collapse: collapse;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1); /* Subtle shadow around table */
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
         th, td {
             border: 1px solid #ccc;
-            padding: 12px; /* More padding for better spacing */
+            padding: 12px;
             text-align: left;
         }
         th {
-            background-color: #0066cc; /* Blue background for headings */
-            color: #ffffff; /* White text color */
+            background-color: #0066cc;
+            color: #ffffff;
+        }
+        footer {
+            background-color: #000000;
+            color: white;
+            padding: 20px 0;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            font-size: 14px;
+        }
+        .footer-section {
+            margin: 10px 20px;
+            text-align: center;
+        }
+        .footer-section a {
+            color: #64b2ff;
+            text-decoration: none;
+        }
+        .footer-section a:hover {
+            text-decoration: underline;
         }
         button {
             padding: 12px 24px;
             font-size: 16px;
             cursor: pointer;
-            background-color: #28a745; /* Green background */
-            color: white; /* White text */
+            background-color: #28a745;
+            color: white;
             border: none;
-            border-radius: 5px; /* Rounded corners */
+            border-radius: 5px;
             position: fixed;
-            bottom: 30px;
-            right: 30px; /* Position the button at the bottom right */
+            bottom: 10px;
+            right: 40px;
+        }
+        a {
+            color: #64b2ff;
         }
         @media (max-width: 600px) {
             table {
@@ -47,6 +72,12 @@
             body {
                 padding: 20px;
             }
+            footer {
+                flex-direction: column;
+            }
+            .footer-section {
+                margin: 10px 0;
+            }
         }
     </style>
 </head>
@@ -54,22 +85,37 @@
     <h1>IIT Gandhinagar Timetable Portal</h1>
     <h3>Select Your Courses</h3>
     <form action="/generate-timetable" method="post">
-        <table>
-            <tr>
-                <th>Course Code</th>
-                <th>Course Name</th>
-                <th>Select</th>
-            </tr>
-            <!-- Rows will be dynamically filled by Flask -->
-            {% for course in courses %}
-            <tr>
-                <td>{{ course.code }}</td>
-                <td>{{ course.name }}</td>
-                <td><input type="checkbox" name="courses" value="{{ course.code }}"></td>
-            </tr>
-            {% endfor %}
+        <table role="table">
+            <thead>
+                <tr>
+                    <th>Course Code</th>
+                    <th>Course Name</th>
+                    <th>Select</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Rows will be dynamically filled by Flask -->
+                {% for course in courses %}
+                <tr>
+                    <td>{{ course.code }}</td>
+                    <td>{{ course.name }}</td>
+                    <td><input type="checkbox" name="courses" value="{{ course.code }}"></td>
+                </tr>
+                {% endfor %}
+            </tbody>
         </table>
-        <button type="submit">Generate Timetable</button>
+        <button type="submit" aria-label="Generate Timetable">Generate Timetable</button>
     </form>
+    <footer>
+        <div class="footer-section">
+            <p><a href="https://github.com/Naveen-Pal/timetable_2024-25">Report a bug on GitHub</a></p>
+        </div>
+        <div class="footer-section">
+            <p>ContactMe: <i class="fa fa-whatsapp" style="font-size:15px;color:rgb(255, 255, 255)"></i>7415233022 </p>
+        </div>
+        <div class="footer-section">
+            <p>Developer: Naveen Pal</p>
+        </div>
+    </footer>
 </body>
 </html>

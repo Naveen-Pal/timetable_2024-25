@@ -62,7 +62,7 @@ def create_timetable_image(selected_courses):
                 personalized_timetable.at[slot, day] = entries[0]
 
     # Generate image of the timetable
-    output_path = 'Personalized_Timetable_Image_Wrapped.png'
+    output_path = 'Timetable.png'
     generate_image(personalized_timetable, output_path)
     return output_path
 
