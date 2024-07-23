@@ -10,7 +10,7 @@
         body {
             font-family: 'Arial', sans-serif;
             margin: 0;
-            padding: 40px;
+            /* padding: 40px; */
             text-align: center;
             background-color: #f4f4f9;
             color: #333;
@@ -33,7 +33,7 @@
         }
 
         table {
-            width: 80%;
+            width: auto;
             margin: 20px auto;
             border-collapse: collapse;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -42,7 +42,7 @@
         th,
         td {
             border: 1px solid #ccc;
-            padding: 12px;
+            padding: 10px;
             text-align: left;
         }
 
@@ -54,12 +54,13 @@
         footer {
             background-color: #000000;
             color: white;
-            padding: 20px 0;
+            padding: 10px 0;
             display: flex;
             justify-content: space-around;
             align-items: center;
             flex-wrap: wrap;
             font-size: 14px;
+            margin-top: 10px;
         }
 
         .footer-section {
@@ -84,9 +85,9 @@
             color: white;
             border: none;
             border-radius: 5px;
-            position: fixed;
-            bottom: 10px;
-            right: 40px;
+            position: sticky;
+            bottom: 20px;
+            right: 20px;
         }
 
         a {
@@ -125,57 +126,72 @@
                 <tr>
                     <th>Course Code</th>
                     <th>Course Name</th>
-                    <th>Select</th>
+                    <th>C</th>
+                    <th>Pick</th>
                 </tr>
             </thead>
             <tbody>
-                <!-- Rows will be dynamically filled by Flask -->
                 {% for course in courses %}
                 <tr>
                     <td>{{ course.code }}</td>
                     <td>{{ course.name }}</td>
-                    <td><input type="checkbox" name="courses" value="{{ course.code }}"></td>
+                    <td>{{ course.credits }}</td>
+                    <td><input type="checkbox" name="courses" value="{{ course.code }}" data-credits="{{ course.credits }}" class="course-checkbox"></td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
-        <button type="submit" aria-label="Generate Timetable">Generate Timetable</button>
+        
+        <button type="submit" aria-label="Generate Timetable" id="total-credits-display">Download Timetable (C: 0)</p></button>
     </form>
     <footer>
         <div class="footer-section">
-            <p><a href="https://github.com/Naveen-Pal/timetable_2024-25">Report a bug on GitHub</a></p>
+            <p><a href="https://github.com/Naveen-Pal/timetable_2024-25">GitHub Repository</a></p>
         </div>
         <div class="footer-section">
             <p>ContactMe: <i class="fa fa-whatsapp" style="font-size:15px;color:rgb(255, 255, 255)"></i>7415233022 </p>
         </div>
         <div class="footer-section">
-            <p>Developer: Naveen Pal</p>
+            <p>Made with ♥</p>
         </div>
     </footer>
 
     <script>
-        const searchField = document.getElementById('search-field');
-        const rows = document.querySelectorAll('tbody tr');
+    const searchField = document.getElementById('search-field');
+    const rows = document.querySelectorAll('tbody tr');
+    const totalCreditsDisplay = document.getElementById('total-credits-display');
 
-        searchField.addEventListener('input', (e) => {
-            const searchValue = e.target.value.toLowerCase();
-            rows.forEach(row => {
-                // const courseCode = row.children[0].textContent.toLowerCase();
-                // if (courseCode.includes(searchValue)) {
-                //     row.style.display = '';
-                // } else {
-                //     row.style.display = 'none';
-                // }
-                const courseName = row.textContent.toLowerCase();
-                if (courseName.includes(searchValue)) {
-                    row.style.display = '';
-                } else {
-                    row.style.display = 'none';
-                }
-
-            });
+    searchField.addEventListener('input', (e) => {
+        const searchValue = e.target.value.toLowerCase();
+        rows.forEach(row => {
+            const courseName = row.textContent.toLowerCase();
+            if (courseName.includes(searchValue)) {
+                row.style.display = '';
+            } else {
+                row.style.display = 'none';
+            }
         });
-    </script>
+    });
+
+    const checkboxes = document.querySelectorAll('.course-checkbox');
+
+    function updateTotalCredits() {
+        let totalCredits = 0;
+        checkboxes.forEach(checkbox => {
+            if (checkbox.checked) {
+                totalCredits += parseInt(checkbox.getAttribute('data-credits'));
+            }
+        });
+        totalCreditsDisplay.textContent = `Download Timetable (C: ${totalCredits})`;
+    }
+
+    checkboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', updateTotalCredits);
+    });
+
+    updateTotalCredits(); 
+</script>
+
 </body>
 
 </html>

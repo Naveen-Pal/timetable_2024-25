@@ -8,7 +8,7 @@ app = Flask(__name__, template_folder='templates')
 @app.route('/', methods=['GET'])
 def index():
     updated_processed_timetable = pd.read_csv('Updated_Processed_Timetable.csv')
-    courses = [{'code': row['Course Code'], 'name': row['Course Name']} for index, row in updated_processed_timetable.iterrows()]
+    courses = [{'code': row['Course Code'], 'name': row['Course Name'], 'credits': row['Credit']} for index, row in updated_processed_timetable.iterrows()]
     return render_template('index.html', courses=courses)
 
 @app.route('/generate-timetable', methods=['POST'])
@@ -72,7 +72,7 @@ def generate_image(dataframe, output_path):
     cell_width = 150
     cell_height = 50
     margin = 2
-    font_size = 14
+    font_size = 12
     header_color = (169, 204, 227)
     cell_color = (245, 245, 245)
     text_color = (0, 0, 0)
