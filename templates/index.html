@@ -15,7 +15,11 @@
             background-color: #f4f4f9;
             color: #333;
         }
-
+        .pre_image{
+            display: flex;
+            justify-content: center;
+        }
+        
         #search-field {
             width: 75%;
             padding: 12px;
@@ -116,6 +120,9 @@
 
 <body>
     <h1>IIT Gandhinagar Timetable Portal</h1>
+    <div class="pre_image">    
+        <img id="timetable-preview" src="" alt="Timetable Preview" style="display:none;"/>
+    </div>
     <h3>Select Your Courses</h3>
     <form>
         <input name="search-field" id="search-field" placeholder="Search for courses ...">
@@ -141,7 +148,7 @@
                 {% endfor %}
             </tbody>
         </table>
-        
+        <button type="button" id="preview-button" aria-label="Preview Timetable">Preview Timetable</button>
         <button type="submit" aria-label="Generate Timetable" id="total-credits-display">Download Timetable (C: 0)</p></button>
     </form>
     <footer>
@@ -152,7 +159,7 @@
             <p>ContactMe: <i class="fa fa-whatsapp" style="font-size:15px;color:rgb(255, 255, 255)"></i>7415233022 </p>
         </div>
         <div class="footer-section">
-            <p>Made with ♥</p>
+            <p>Made with ❤️</p>
         </div>
     </footer>
 
@@ -160,16 +167,15 @@
     const searchField = document.getElementById('search-field');
     const rows = document.querySelectorAll('tbody tr');
     const totalCreditsDisplay = document.getElementById('total-credits-display');
+    const prev = document.getElementById("timetable-preview");
+    const previewButton = document.getElementById('preview-button');
+    const sessionId = "{{ session_id }}"
 
     searchField.addEventListener('input', (e) => {
         const searchValue = e.target.value.toLowerCase();
         rows.forEach(row => {
             const courseName = row.textContent.toLowerCase();
-            if (courseName.includes(searchValue)) {
-                row.style.display = '';
-            } else {
-                row.style.display = 'none';
-            }
+            row.style.display = courseName.includes(searchValue) ? '' : 'none';
         });
     });
 
@@ -185,11 +191,55 @@
         totalCreditsDisplay.textContent = `Download Timetable (C: ${totalCredits})`;
     }
 
+    function updatePreview() {
+    const selectedCourses = Array.from(checkboxes)
+        .filter(checkbox => checkbox.checked)
+        .map(checkbox => checkbox.value);
+
+    if (selectedCourses.length === 0) {
+        alert("Please select at least one course to preview.");
+        return;
+    }
+
+    // Create a fetch request to generate the timetable image
+    fetch(`/preview-timetable`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ courses: selectedCourses })
+    })
+    .then(response => {
+        if (response.ok) {
+            return response.blob(); // Get the image as a blob
+        }
+        throw new Error('Failed to generate timetable preview');
+    })
+    .then(blob => {
+        const url = URL.createObjectURL(blob);
+        prev.src = url; // Set the src to the blob URL
+        prev.style.display = "block"; // Make the image visible
+    })
+    .catch(error => {
+        console.error(error);
+        alert('Error generating preview: ' + error.message);
+    });
+}
+
+
     checkboxes.forEach(checkbox => {
-        checkbox.addEventListener('change', updateTotalCredits);
+        checkbox.addEventListener('change', () => {
+            updateTotalCredits();
+        });
     });
 
-    updateTotalCredits(); 
+    previewButton.addEventListener('click', () => {
+        window.scrollTo(0, 0); // Scroll to the top of the page
+        updatePreview(); // Update the preview image
+    });
+
+    updateTotalCredits();
+
 </script>
 
 </body>

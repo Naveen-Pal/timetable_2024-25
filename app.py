@@ -1,23 +1,44 @@
-from flask import Flask, render_template, request, send_file
+from flask import Flask, render_template, request, send_file, session
 import pandas as pd
 from PIL import Image, ImageDraw, ImageFont
 import os
+import uuid
+from datetime import datetime, timedelta
 
 app = Flask(__name__, template_folder='templates')
+app.secret_key = os.urandom(24)  # Needed for session management
+
+# Directory to save generated images
+output_dir = 'generated_images'
+os.makedirs(output_dir, exist_ok=True)
 
 @app.route('/', methods=['GET'])
 def index():
     updated_processed_timetable = pd.read_csv('Updated_Processed_Timetable.csv')
     courses = [{'code': row['Course Code'], 'name': row['Course Name'], 'credits': row['Credit']} for index, row in updated_processed_timetable.iterrows()]
+    session_id = session.get('session_id')
+    if not session_id:
+        session_id = str(uuid.uuid4())
+        session['session_id'] = session_id
     return render_template('index.html', courses=courses)
+
+@app.route('/preview-timetable', methods=['POST'])
+def preview_timetable():
+    selected_courses = request.json.get('courses')
+    session_id = session.get('session_id')
+    image_path = create_timetable_image(selected_courses, session_id)
+    return send_file(image_path, mimetype='image/png')
+
 
 @app.route('/generate-timetable', methods=['POST'])
 def generate_timetable():
+    # Generate a unique filename based on session ID
+    session_id = session.get('session_id')
     selected_courses = request.form.getlist('courses')
-    image_path = create_timetable_image(selected_courses)
+    image_path = create_timetable_image(selected_courses, session_id)
     return send_file(image_path, as_attachment=True)
 
-def create_timetable_image(selected_courses):
+def create_timetable_image(selected_courses, session_id):
     # Load the timetables
     time_slots_file = pd.read_csv('Timetable 2024-25, Sem-I - Time Slots.csv')
     updated_processed_timetable = pd.read_csv('Updated_Processed_Timetable.csv')
@@ -54,15 +75,15 @@ def create_timetable_image(selected_courses):
                 overlaps[f"{slot} {day}"] = entries
                 display=""
                 for ent in entries:
-                    display += ent[:7]+'/'
+                    display += ent[:7]+'/ '
                 else:
                     display = display[:-1] +"\n(Clash)"
                 personalized_timetable.at[slot, day] = display
             elif entries:
                 personalized_timetable.at[slot, day] = entries[0]
 
-    # Generate image of the timetable
-    output_path = 'Timetable.png'
+    # Generate image with a unique filename
+    output_path = os.path.join(output_dir, f'Timetable_{session_id}.png')
     generate_image(personalized_timetable, output_path)
     return output_path
 
@@ -94,7 +115,6 @@ def generate_image(dataframe, output_path):
         draw.rectangle([x, margin, x + cell_width, margin + cell_height], fill=header_color)
         draw.text((x + 5, margin + 5), column, fill=text_color, font=font)
 
-    # Ensure index is integer
     dataframe.reset_index(drop=True, inplace=True)
 
     # Draw cells
@@ -108,7 +128,15 @@ def generate_image(dataframe, output_path):
 
     image.save(output_path)
 
-
+# Optional: Cleanup task to delete old files
+def cleanup_old_files():
+    now = datetime.now()
+    for filename in os.listdir(output_dir):
+        file_path = os.path.join(output_dir, filename)
+        if os.path.isfile(file_path):
+            file_time = datetime.fromtimestamp(os.path.getmtime(file_path))
+            if now - file_time > timedelta(hours=1):  # Customize as needed
+                os.remove(file_path)
 
 if __name__ == '__main__':
     app.run(debug=True)
