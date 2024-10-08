@@ -19,6 +19,10 @@
             display: flex;
             justify-content: center;
         }
+        img{
+            display:none;
+            width: 70vw;
+        }
         
         #search-field {
             width: 75%;
@@ -91,7 +95,7 @@
             border-radius: 5px;
             position: sticky;
             bottom: 20px;
-            right: 20px;
+            margin: 10px;
         }
 
         a {
@@ -114,6 +118,9 @@
             .footer-section {
                 margin: 10px 0;
             }
+            img{
+                width: 90vw;
+            }
         }
     </style>
 </head>
@@ -121,12 +128,10 @@
 <body>
     <h1>IIT Gandhinagar Timetable Portal</h1>
     <div class="pre_image">    
-        <img id="timetable-preview" src="" alt="Timetable Preview" style="display:none;"/>
+        <img id="timetable-preview" src="" alt="Timetable Preview"/>
     </div>
+    <input name="search-field" id="search-field" placeholder="Search for courses ...">
     <h3>Select Your Courses</h3>
-    <form>
-        <input name="search-field" id="search-field" placeholder="Search for courses ...">
-    </form>
     <form action="/generate-timetable" method="post">
         <table role="table">
             <thead>
@@ -148,8 +153,8 @@
                 {% endfor %}
             </tbody>
         </table>
-        <button type="button" id="preview-button" aria-label="Preview Timetable">Preview Timetable</button>
-        <button type="submit" aria-label="Generate Timetable" id="total-credits-display">Download Timetable (C: 0)</p></button>
+        <button type="button" id="preview-button" aria-label="Preview Timetable"><i class="fa fa-eye fa-2x" aria-hidden="true"></i><span id="total-credits-display">(0)</span></button>
+        <button type="submit" aria-label="Generate Timetable"><i class="fa fa-download fa-2x" aria-hidden="true"></i> </button>
     </form>
     <footer>
         <div class="footer-section">
@@ -188,7 +193,7 @@
                 totalCredits += parseInt(checkbox.getAttribute('data-credits'));
             }
         });
-        totalCreditsDisplay.textContent = `Download Timetable (C: ${totalCredits})`;
+        totalCreditsDisplay.textContent = `(${totalCredits})`;
     }
 
     function updatePreview() {

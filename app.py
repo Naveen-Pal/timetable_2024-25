@@ -20,6 +20,7 @@ def index():
     if not session_id:
         session_id = str(uuid.uuid4())
         session['session_id'] = session_id
+    cleanup_old_files()
     return render_template('index.html', courses=courses)
 
 @app.route('/preview-timetable', methods=['POST'])
@@ -130,13 +131,13 @@ def generate_image(dataframe, output_path):
 
 # Optional: Cleanup task to delete old files
 def cleanup_old_files():
-    now = datetime.now()
+    # now = datetime.now()
     for filename in os.listdir(output_dir):
         file_path = os.path.join(output_dir, filename)
         if os.path.isfile(file_path):
-            file_time = datetime.fromtimestamp(os.path.getmtime(file_path))
-            if now - file_time > timedelta(hours=1):  # Customize as needed
-                os.remove(file_path)
+        #     file_time = datetime.fromtimestamp(os.path.getmtime(file_path))
+        # if now - file_time > timedelta(hours=1):  # Customize as needed
+            os.remove(file_path)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=True)
