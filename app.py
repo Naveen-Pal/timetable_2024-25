@@ -20,7 +20,6 @@ def index():
     if not session_id:
         session_id = str(uuid.uuid4())
         session['session_id'] = session_id
-    cleanup_old_files()
     return render_template('index.html', courses=courses)
 
 @app.route('/preview-timetable', methods=['POST'])
