@@ -11,11 +11,7 @@ app.secret_key = os.urandom(24)  # Needed for session management
 # Directory to save generated images
 output_dir = 'generated_images'
 os.makedirs(output_dir, exist_ok=True)
-@app.before_request
-def redirect_https_to_http():
-    if request.is_secure:
-        url = request.url.replace("https://", "http://", 1)
-        return redirect(url, code=301)
+
 @app.route('/', methods=['GET'])
 def index():
     updated_processed_timetable = pd.read_csv('Updated_Processed_Timetable.csv')
