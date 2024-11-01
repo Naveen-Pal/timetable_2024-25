@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, send_file, session
+from flask import Flask, render_template, request, send_file, session ,redirect
 import pandas as pd
 from PIL import Image, ImageDraw, ImageFont
 import os
@@ -11,7 +11,11 @@ app.secret_key = os.urandom(24)  # Needed for session management
 # Directory to save generated images
 output_dir = 'generated_images'
 os.makedirs(output_dir, exist_ok=True)
-
+@app.before_request
+def redirect_https_to_http():
+    if request.is_secure:
+        url = request.url.replace("https://", "http://", 1)
+        return redirect(url, code=301)
 @app.route('/', methods=['GET'])
 def index():
     updated_processed_timetable = pd.read_csv('Updated_Processed_Timetable.csv')
@@ -139,4 +143,4 @@ def cleanup_old_files():
             os.remove(file_path)
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=False)
