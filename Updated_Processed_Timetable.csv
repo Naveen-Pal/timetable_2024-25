@@ -6,7 +6,9 @@ Data-Centric Computing,ES 113,C1,,"N1,N2",3.0
 Principles and Applications of Electrical Engineering,ES 116,"F1,F2",H2,"I1,J1,I2,K2,J2",5.0
 The World of Engineering,ES 117,,,"J2,M2",2.0
 Undergraduate Science Laboratory,BS 192,,,"I1,K1,J1,L1,I2,M1,K2,L2,J2,M2",3.0
-Introduction to Writing II,HS 192,,"G1,G2,B1,B2",,2.0
+Introduction to Writing II,HS 192,,"G1,G2
+
+B1,B2",,2.0
 Physical Education,PE 102,,,,0.0
 Comprehensive Viva Voce,IN 102,,,,0.0
 Theory of Computing,CS 201,"C1,C2",H2,,4.0
@@ -26,6 +28,10 @@ Fluid Mechanics,ES 212,"F1,F2",N1,,4.0
 Sustainability and Environment,CE 202,D1,,"I1,K1",3.0
 Fluid Dynamics,ME 207,"F1,F2",N1,I1,5.0
 Vibrations,ME 208,"C1,C2",M1,,2.0
+Introduction to Computational Materials Engineering,MSE 203,"F1,F2",N1,,4.0
+Mechanical Behavior of Materials,MSE 205,"D1,D2",,I1,4.0
+Physics of Materials,MSE 206,"C1,C2",,,4.0
+Microstructural Engineering,MSE 210,"G1,G2",,K1,4.0
 Power Systems,EE 224,"C1,C2",H2,,4.0
 Control Systems,ES 245,"D1,D2",N1,,4.0
 Data Structures and Algorithms II,ES 301,"P1,P2",J1,,4.0
@@ -56,6 +62,8 @@ Comprehensive Viva Voce (Fourth Year B.Tech. Students),IN 108,,,,0.0
 Synthesis and Analysis of Mechanisms,ME 335,"P1,P2",,H1,3.0
 Comprehensive Viva Voce (Third Year B.Tech. Students),IN 106,,,,0.0
 Comprehensive Viva Voce (Fourth Year B.Tech. Students),IN 108,,,,0.0
+Corrosion and Degradation of Materials,MSE 302,"G1,G2",,,4.0
+Materials and Environment,MSE 312,E1,,,2.0
 Comprehensive Viva Voce (Third Year B.Tech. Students),IN 106,,,,0.0
 Comprehensive Viva Voce (Fourth Year B.Tech. Students),IN 108,,,,0.0
 Physical Education (For 2022 MSc and MA students),PE 500,,,,0.0
@@ -119,6 +127,7 @@ Japanese Language for Beginners,HS 153,"M1,M2",J1,,4.0
 Mandarin for Beginners,HS 154,"N1,N2",,,4.0
 Mandarin for Beginners - II,HS 155,"L1,L2",,,4.0
 Sanskrit Literature,HS 223,"I1,I2",J1,,4.0
+"Creativity, Design and Doing",DES 302,"M1,M2",,,4.0
 Harappan Civilization,HS 326,"I1,I2",,,4.0
 Introduction to Linguistics,HS 421,"N1,N2",,,4.0
 Creative Writing in Practice,HS 426,"M1,M2",,I2,4.0
@@ -139,6 +148,7 @@ Mixed Methods in Research,HS 654,"P1,P2",,,2.0
 Business Communication(2nd half of sem),MS 204,"I1,I2",,,2.0
 "Neuromarketing
 (Second Half of Semester)",MS 404,"D1,D2",,,2.0
+Information Design for e-learning,DES 602,"N1,N2",,,4.0
 Introduction to Biomedical Engineering,BE 304,"M1,M2",,,4.0
 Stem Cells: Science and Applications,BE 403,"I1,I2",,,4.0
 Introduction to Cell Biology,BE 407,"L1,L2",,,4.0
@@ -201,4 +211,10 @@ Elastodynamics and Vibrations,ES 646,"D1,D2",,,4.0
 Introduction to Turbulence,ME 646,"E1,E2",,,4.0
 Computational Inelasticity,ES 651,"E1,E2",,,4.0
 Energy Systems,ES 632,"B1,B2",,,4.0
+Surface Engineering,MSE 355,"L1,L2",,,4.0
+Thin Film Processing and Characterization,MSE 603,"A1,A2",,,4.0
+Biomaterials for Tissue Regeneration,MSE 605,"D1,D2",,,4.0
+Process Plant Design – How to Set Up a Process Industry,MSE 621,"J1,J2",,,4.0
 Biomolecular Materials Science,ES 623,"E1,E2",,,4.0
+Interfaces in Materials,MSE 627,"E1,E2",,,4.0
+Semiconductor Materials and Fabrication Process,MSE 634,"P1,P2",,,4.0
