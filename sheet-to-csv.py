@@ -8,7 +8,9 @@ df = pd.read_csv(file_path)
 import re
 
 # Step 1: Filter rows with valid course codes (two letters followed by digits)
-df = df[df['Course Code'].str.match(r'^[A-Z]{2,3} \d{3}$', na=False)]
+df = df[df['Course Code'].str.len() <= 15]
+column_names = list(df.columns)
+print(column_names)
 
 # Step 2: Select relevant columns and rename them
 df = df[['Course Name', 'Course Code', 'Lecture', 'Tutorial', 'Lab', 'C']]

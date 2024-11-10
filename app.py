@@ -14,8 +14,8 @@ os.makedirs(output_dir, exist_ok=True)
 
 @app.route('/', methods=['GET'])
 def index():
-    updated_processed_timetable = pd.read_csv('Updated_Processed_Timetable.csv')
-    courses = [{'code': row['Course Code'], 'name': row['Course Name'], 'credits': row['Credit']} for index, row in updated_processed_timetable.iterrows()]
+    updated_processed_timetable = pd.read_csv('Cleaned_Timetable.csv')
+    courses = [{'code': row['Course Code'], 'name': row['Course Name'], 'credits': row['Credit']} for index, row in updated_processed_timetable.iterrows() if not pd.isna(row['Credit'])]
     session_id = session.get('session_id')
     if not session_id:
         session_id = str(uuid.uuid4())
