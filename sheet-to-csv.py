@@ -10,7 +10,6 @@ import re
 # Step 1: Filter rows with valid course codes (two letters followed by digits)
 df = df[df['Course Code'].str.len() <= 15]
 column_names = list(df.columns)
-print(column_names)
 
 # Step 2: Select relevant columns and rename them
 df = df[['Course Name', 'Course Code', 'Lecture', 'Tutorial', 'Lab', 'C']]
@@ -27,6 +26,6 @@ df['Lab Time'] = df['Lab Time'].apply(remove_parentheses).str.strip()
 # Display cleaned data
 df.reset_index(drop=True, inplace=True)
 # Save the cleaned data to a new CSV file
-cleaned_file_path = 'Cleaned_Timetable.csv'
+cleaned_file_path = 'Updated_Processed_Timetable.csv'
 df.to_csv(cleaned_file_path, index=False)
 

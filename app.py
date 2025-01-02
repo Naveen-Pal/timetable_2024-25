@@ -6,7 +6,7 @@ import uuid
 from datetime import datetime, timedelta
 
 app = Flask(__name__, template_folder='templates')
-app.secret_key = os.urandom(24)  # Needed for session management
+app.secret_key = os.urandom(24)
 
 # Directory to save generated images
 output_dir = 'generated_images'
@@ -14,7 +14,7 @@ os.makedirs(output_dir, exist_ok=True)
 
 @app.route('/', methods=['GET'])
 def index():
-    updated_processed_timetable = pd.read_csv('Cleaned_Timetable.csv')
+    updated_processed_timetable = pd.read_csv('Updated_Processed_Timetable.csv')
     courses = [{'code': row['Course Code'], 'name': row['Course Name'], 'credits': row['Credit']} for index, row in updated_processed_timetable.iterrows() if not pd.isna(row['Credit'])]
     session_id = session.get('session_id')
     if not session_id:
