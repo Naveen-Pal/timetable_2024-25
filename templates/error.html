@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Error - IIT Gandhinagar Time Table</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 40px;
+            text-align: center;
+            background-color: #f4f4f9;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 80vh;
+        }
+        
+        .error-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 80%;
+        }
+        
+        h1 {
+            color: #d9534f;
+            margin-bottom: 20px;
+        }
+        
+        .error-icon {
+            color: #d9534f;
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        .error-message {
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        
+        .back-button {
+            padding: 10px 20px;
+            background-color: #0066cc;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+        
+        .back-button:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="error-container">
+        <div class="error-icon">
+            <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+        </div>
+        <h1>Oops! Something went wrong</h1>
+        <div class="error-message">
+            <p>{{ error|default("An unexpected error occurred. Please try again later.") }}</p>
+        </div>
+        <a href="/" class="back-button">
+            <i class="fa fa-arrow-left" aria-hidden="true"></i> Go Back to Homepage
+        </a>
+    </div>
+</body>
+</html>

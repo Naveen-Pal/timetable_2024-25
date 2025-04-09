@@ -1,287 +1,264 @@
-Course Name,Course Code,Lecture Time,Tutorial Time,Lab Time,Credit
-General Education I,GE 101,"P1,P2",,,2.0
-Ordinary Differential Equations (First Half),MA 104,"E1,E2",H1,,2.0
-Data-Centric Computing,ES 113,C1,,"N1,N2",3.0
-"Probability, Statistics, and Data Visualization",ES 114,D1,,"I1,K2",3.0
-"Principles and Applications of Electrical Engineering
-(Open only to BTech/BTech-MTech students admitted in 2024)",ES 116,"F2,H2",F1,"I1,J1,I2,K2,J2",5.0
-"Principles and Applications of Electrical Engineering
-(Not open to BTech/BTech-MTech students admitted in 2024)",ES 116(A),"F2,H2",F1,"K1,L2",5.0
-The World of Engineering,ES 117,,,"J2,M2",2.0
-Undergraduate Science Laboratory,BS 192,,,"I1,K1,J1,L1,I2,M1,K2,L2,J2,M2",3.0
-Introduction to Writing II,HS 192,,"G1,G2
-
-B1,B2",,2.0
-Physical Education,PE 102,,,,0.0
-Comprehensive Viva Voce,IN 102,"C2,D2",,,0.0
-Theory of Computing,CS 201,"C1,C2",H2,,4.0
-Introduction to Electrodynamics,PH 201,"L1,L2",B2,,4.0
-Chemical Engineering Thermodynamics,CL 202,"F1,F2",,,3.0
-Software Tools & Techniques for AI,CS 203,K1,,"J2,M2",4.0
-Introduction to Materials,ES 202,"M1,M2",J1,,4.0
-Digital Systems,ES 204,"F1,F2",,"A1,A2,B1",4.0
-Process Fluid Mechanics,CL 203,"D1,D2",,,3.0
-Heat Transfer,CL 204,"C1,C2",,,3.0
-"Numerical Analysis 
-(Second Half)",MA 203,"E1,E2",H1,,2.0
-Partial Differential Equations (Second Half),MA 204,"J1,J2",A2,,2.0
-Chemical Reaction Engineering - I,CL 205,"G1,G2",,,3.0
-Principles of Manufacturing Processes,ME 209,"G1,G2",,,3.0
-Mechanics of Solids,ES 221,"D1,D2",H2,,4.0
-Fluid Mechanics,ES 212,"F1,F2",N1,,4.0
-Sustainability and Environment,CE 202,D1,,"I1,K1",3.0
-Fluid Dynamics,ME 207,"F1,F2",N1,I1,5.0
-Vibrations,ME 208,"C1,C2",M1,,2.0
-Introduction to Computational Materials Engineering,MSE 203,"F1,F2",N1,,4.0
-Mechanical Behavior of Materials,MSE 205,"D1,D2",,I1,4.0
-Physics of Materials,MSE 206,"C1,C2",,,4.0
-Microstructural Engineering,MSE 210,"G1,G2",,K1,4.0
-Power Systems,EE 224,"C1,C2",H2,,4.0
-Control Systems,ES 245,"D1,D2",N1,,4.0
-Data Structures and Algorithms II,ES 301,"P1,P2",J1,,4.0
-Structural Analysis,CE 302,"C1,C2",H2,,4.0
-Mathematical Foundations for AI,CS 303,"G1,G2",K2,,4.0
-Physical Education,PE 104,,,,0.0
-Comprehensive Viva Voce,IN 104,,,,0.0
-Separation Processes - II,CL 316,"G1,G2",,,3.0
-"Process Synthesis, Design, and Simulation",CL 317,E1,,"I2,M1",4.0
-Transport Phenomena,CL 325,"D1,D2",,,3.0
-Integrated Chemical Engineering Lab-II,CL 327,,,"J1,L1",2.0
-HSS Elective,HS XXX,,,,
-Comprehensive Viva Voce (Third Year B.Tech. Students),IN 106,,,,0.0
-HS Elective,HS XXX,,,,
-Comprehensive Viva Voce (Fourth Year B.Tech. Students),IN 108,,,,0.0
-Design of Reinforced Concrete Structures,CE 311,"E1,E2",N2,L2,5.0
-Environmental Science and Engineering,CE 313,"D1,D2",,,4.0
-Geotechnical Engineering,CE 314,"G1,G2",,"I1,K1",4.0
-HSS Elective,HS XXX,,,,
-Comprehensive Viva Voce (Third Year B.Tech. Students),IN 106,,,,0.0
-Construction Technology & Management,CE 403,"G1,G2",,,4.0
-Comprehensive Viva Voce (Fourth Year B.Tech. Students),IN 108,,,,0.0
-Software Tools and Techniques for CSE ,CS 202,K1,,"C2,D2",4.0
-Operating Systems,CS 330,"F1,F2",,H2,4.0
-Computer Networks,CS 331,"E1,E2",A1,,4.0
-Comprehensive Viva Voce (Third Year B.Tech. Students),IN 106,,,,0.0
-Comprehensive Viva Voce (Fourth Year B.Tech. Students),IN 108,,,,0.0
-Communication Systems,EE 341,"G1,G2",A1,,4.0
-HSS Elective,HS XXX,,,,
-Comprehensive Viva Voce (Third Year B.Tech. Students),IN 106,,,,0.0
-Comprehensive Viva Voce (Fourth Year B.Tech. Students),IN 108,,,,0.0
-Synthesis and Analysis of Mechanisms,ME 335,"P1,P2",,H1,3.0
-Mechanical Systems Design,ME XXX,"E1,E2",,K1,3.0
-Energy Systems,ES 337,"D1,D2",,,3.0
-HSS Elective,HS XXX,,,,
-Comprehensive Viva Voce (Third Year B.Tech. Students),IN 106,,,,0.0
-Comprehensive Viva Voce (Fourth Year B.Tech. Students),IN 108,,,,0.0
-Corrosion and Degradation of Materials,MSE 302,"G1,G2",,,4.0
-Materials and Environment,MSE 312,E1,,,2.0
-HSS Elective,HS XXX,,,,
-Comprehensive Viva Voce (Third Year B.Tech. Students),IN 106,,,,0.0
-Comprehensive Viva Voce (Fourth Year B.Tech. Students),IN 108,,,,0.0
-Physical Education (For 2022 MSc and MA students),PE 500,,,,0.0
-Physical Education (For 2022 M Tech and PhD students),PE 600,,,,0.0
-Networks and Complex Systems,ES 404,"P1,P2",,,4.0
-Finite Element Methods,ES 622,"I1,I2",,,4.0
-Analysis and Design of Foundation Systems,CE 602,"M1,M2",,"J1,L1",5.0
-Remote Sensing of Land and Water Resources,CE 605,"M1,M2",,,4.0
-Structural Design for Fire,CE 615,"M1,M2",,,4.0
-Applied Hydraulic Transients,CE 628,"J1,J2",,,4.0
-Geosynthetics,CE 629,"K1,K2",,,4.0
-Advanced Concrete Design,CE 632,"K1,K2",,,4.0
-Traffic and Roadway Engineering,CE 636,"F1,F2",,,4.0
-Special Topics in Civil Engineering: Design for Dynamic Loads,CE 691-I,"I1,I2",,,4.0
-Special Topics in Civil Engineering: Geotechnical Infrastructure Projects,CE 691-V,"N1,N2",,,4.0
-Special Topics in Civil Engineering: Engineering practices in Drinking Water Treatment,CE 691-VII,"J1,J2",,,4.0
-Colloidal Domain: Where Science Meets Engineering,CL 605,"A1,A2",,,4.0
-Design of Experiments,ES 617,"N1,N2",,,4.0
-Particulate Solids: Processing & Surface Engineering,CL 627,"K1,K2",,,4.0
-Fundamentals of Aerosol Science,CL 629,"N1,N2",,,4.0
-Liquid State Theory,CL 628,"C1,C2",H2,,4.0
-Catalyst Design for Heterogeneous Reactions,CL 630,"P1,P2",,,4.0
-Pharmaceutical Crystallization,CL 631,"L1,L2",,,4.0
-Molecular Simulations – Theory and Applications,ES 658,"J1,J2",H1,,4.0
-Fundamentals and Applications of Spectroscopy,CH 203,"L1,L2",,,4.0
-Reactions and Mechanisms in Organic Chemistry,CH 512,"D1,D2",,,4.0
-Analytical and Computational Chemistry Laboratory,CH 524,,,"K1,H1",2.0
-Physical Chemistry Laboratory,CH 525,,,"J1,L1,N1",2.0
-Group Theory & Spectroscopy,CH 526,"B1,B2",,,4.0
-Organometallic Chemistry,CH 527,"J1,J2",,,4.0
-Chemistry of Natural Products,CH 602,"A1,A2",,,4.0
-Electrochemistry,CH 615,"E1,E2",,,4.0
-Fluorescence Spectroscopy for Chemists and Biologists,CH 628,"K1,K2",,,4.0
-Medicinal Chemistry for Life,CH 629,"F1,F2",,,4.0
-Catalytic Chemistry,CH 630,"G1,G2",,,4.0
-Solid State Chemistry and Applications,CH 632,"L1,L2",,,4.0
-Electronic Structure Theory,CH 638,"L1,L2",,,4.0
-Advanced Main Group Chemistry,CH 639,"M1,M2",,,4.0
-Complex Analysis,MA 502,"G1,G2",A1,,4.0
-Ordinary Differential Equations,MA 507,"E1,E2",B1,,4.0
-Applied Vector Calculus and Differential Equations,MA 602,"J1,J2",A2,,4.0
-Differential Topology,MA 606,"L1,L2",,,4.0
-Real Analysis of Several Variables,MA 629 (A),"I1,I2",L2,,4.0
-Numerical Analysis,MA 637,"D1,D2",H1,,4.0
-Number Theory,MA 623,"C1,C2",,,4.0
-Stochastic Differential Equations,MA 625,"K1,K2",,,4.0
-Algebra II,MA 628,"M1,M2",L1,,4.0
-Special Functions,MA 631,"P1,P2",J1,,4.0
-Nonlinear Functional Analysis,MA 641,"K1,K2",,,4.0
-Special Topics in Mathematics: Commutative Algebra II,MA 691-V,"B1,B2",J1,,4.0
-Special Topics in Mathematics: Algebraic Geometry: An Introduction,MA 691-VI,"I1,I2",,,4.0
-Special Topics in Mathematics: Machine Learning Methods for Partial Differential Equations,MA 692-V,"F1,F2",,,1.0
-Quantum Mechanics II,PH 504,"G1,G2",A1,,4.0
-Methods of Experimental Physics,PH 506,C1,,"I1,K1",4.0
-Statistical Mechanics,PH 507,"E1,E2",K2,,4.0
-Computational Physics,PH 509,"D1,D2",,,4.0
-Topics in Quantum and Statistical Mechanics,PH 607,"L1,L2",,,4.0
-Tools of Theoretical Physics,PH 608,"N1,N2",,,4.0
-Quantum Field Theory II,PH 612,"F1,F2",,,4.0
-Physics of Two-dimensional Materials,PH 615,"M1,M2",,,4.0
-Quantum Optics,PH 616,"B1,B2",,,4.0
-Quantum Computing and Information,PH 643,"P1,P2",,,4.0
-Tools of Experimental Physics,PH 644,"F1,F2",,,4.0
-Advanced General relativity,PH 649,"M1,M2",,,4.0
-Group Theory For Physics,PH 650,"J1,J2",,,4.0
-Nanomagnetism and Spintronics,PH 651,"P1,P2",,,4.0
-Special Topics in Physics: Advanced Condensed Matter Physics,PH 691-IV,"E1,E2",,,4.0
-Writing,FP 602,H2,,"F1,F2",4.0
-French Studies,HS 103,"I1,I2",J1,,4.0
-Urdu Script & Poetry,HS 111,"P1,P2",J1,,4.0
-Urdu Poetry Interpretation,HS 112,"I1,I2",J1,,4.0
-Advance Japanese Learning,HS 152,"N1,N2",J2,,4.0
-Japanese Language for Beginners,HS 153,"M1,M2",J1,,4.0
-Mandarin for Beginners,HS 154,"L1,L2",,,4.0
-Mandarin for Beginners - II,HS 155,"N1,N2",,,4.0
-Sanskrit Literature,HS 223,"I1,I2",J1,,4.0
-"Creativity, Design and Doing",DES 302,"M1,M2",,,4.0
-"Principles of Business Management
-(Second Half of the Semester)",MS 492-VI,"N1,N2",,,4.0
-Harappan Civilization,HS 326,"I1,I2",,,4.0
-Introduction to Linguistics,HS 421,"N1,N2",,,4.0
-Creative Writing in Practice,HS 426,"M1,M2",,I2,4.0
-Special Topics in Management: Managing Sustainable Businesses,MS 491-VII,"I1,I2",,,4.0
-"""Special Topics in HSS: Challenges in the Digital Society        """,HS 491-VIII,"M1,M2",,,4.0
-Special Topics in HSS: Understanding and Designing Comics and Graphic Novels,HS 491-XI,"J1,J2",,,4.0
-Special Topics in HSS:  Drawing Connections: Environmental Perception and Visual Anthropology,HS 491-XIII,"M1,M2",,,4.0
-"Special Topics in Management: International Marketing 
-(Second Hallf of Semester)",MS 492-VII,"M1,M2",,,4.0
-Special Topics in Management: Consumer Behaviour,MS 491-XIV,"P1,P2",,,4.0
-"Special Topics in Management: Medical Products Manufacturing Quality and Regulatory 
-(First Half of the Semester) ",MS 491-XV,"J1,J2",,,3.0
-"Special Topics in Management: Strategic Leadership
-(First Half of the Semster)",MS 492-I,"P1,P2",,,2.0
-"Special Topics in Management: Business Risk Management
-(First Half of the Semester)",MS 492-II,"K1,K2",,,2.0
-Special Topics in Management: Business Ethics and Responsible Leadership (First Half of Semester),MS 492-IV,"L1,L2",,,2.0
-"Special Topics in Management: Essentials of Finance and Trade Laws
-(Second Hallf of Semester)",MS 492-V,"K1,K2",,,2.0
-"Humanism, Antihumanism, Posthumanism",HS 507,"P1,P2",,,4.0
-Indian Knowledge Systems - Buddhism in India and Beyond,HS 508,"N1,N2",,,4.0
-Political Thought,HS 512,"D1,D2",,,4.0
-Perspectives in History,HS 513,"E1,E2",,,4.0
-"History, Concepts and Theories of Development",HS 522,"A1,A2",,,4.0
-Quantiative Research Methods,HS 523,"B1,B2",A1,,4.0
-Digital Cultures and New Media,HS 631,"N1,N2",,,4.0
-India Through the Writer’s Eye,HS 635,"J1,J2",,,4.0
-Structures and Hydrology in Ancient India,HS 642,"L1,L2",,,4.0
-"Literature, Theory and Social Contexts",HS 647,"G1,G2",,,4.0
-Critical Perspectives in Anthropology,HS 650,"C1,C2",,,4.0
-"Academic Communication: Explanation and Paraphrasing
- (First Half of the Semester)",HS 653,"K1,K2",,,2.0
-Mixed Methods in Research,HS 654,"P1,P2",,,2.0
-Business Communication(2nd half of sem),MS 204,"I1,I2",,,2.0
-"Neuromarketing
-(Second Half of Semester)",MS 404,"A1,A2",,,2.0
-Information Design for e-learning,DES 602,"N1,N2",,,4.0
-Special Topics in HSS: Decolonizing Social Sciences,HS 691-IX,"M1,M2",,,4.0
-Sociology of Indigenous Peoples,HS 691-X,"M1,M2",,,4.0
-Special Topics in HSS: Storytelling for the Digital Era,HS 491-III,"L1,L2",,,4.0
-Introduction to Biomedical Engineering,BE 304,"M1,M2",,,4.0
-Stem Cells: Science and Applications,BE 403,"I1,I2",,,4.0
-Systems Biology,BE 406,"B1,B2",,,4.0
-Introduction to Cell Biology,BE 407,"G1,G2",,,4.0
-Biophysical Techniques,BE 603,"D1,D2",,H1,4.0
-Neurophysiological Basis of Movement,BE 606,"G1,G2",,,4.0
-Molecular Basis of Neurodegenerative Diseases,BE 608,"A1,A2",,,4.0
-Molecular Oncology,BE 610,"F1,F2",,,4.0
-Bioinformatics and Computational Biology,BE 615,G1,,"J1,L1",4.0
-Cellular Communication,BE 619,"K1,K2",,,4.0
-Special Topics in Biological Engineering: Analysis and Characterization of Biologicals,BE 691-I,"F1,F2",,"I1,K1",4.0
-Special Topics in Biological Engineering: Animal Cell Culture Techniques,BE 692,,,"I2,M1",2.0
-Novel Drug Delivery Technologies: Fundamental Principles and Engineering,BE 617,"E1,E2",,,4.0
-Special Topics in Biological Engineering: Bioinformatics Methods,BE 691-IV,,,"M1,M2",2.0
-Experimental Techniques in Cognitive Science,CG 506,I1,,"I2,M1",4.0
-"Evolutionary Neuropsychology
-(Quad 1)",CG 507,"M1,M2",,,2.0
-Introduction to Cognitive Linguistics,CG 517,"C1,C2",,,4.0
-"Phenomenology, Embodiment, and Consciousness",CG 604,"E1,E2",,,4.0
-Learning and Memory,CG 605,"D1,D2",,,4.0
-Emotion and Cognition,CG 607,"L1,L2",,J2,4.0
- Analysis and Modelling of Locomotion,CG 613,"B1,B2",,,2.0
-Incentives in ML,CS 619,"L1,L2",,,4.0
-Compilers,CS 327,"G1,G2",,H1,5.0
-Introduction to Data Science,CS 328,"I1,I2",B2,,4.0
-Databases,CS 432,"J1,J2",,,4.0
-Software Engineering and Testing,CS 434,"N1,N2",J2,,4.0
-Human-Computer Interaction,CS 435,"J1,J2",,,4.0
-Advanced Algorithms,CS 614,"F1,F2",,,4.0
-Advanced Computer Networks,CS 615,"D1,D2",,,4.0
-Distributed Systems and Cloud Computing ,CS 616,"M1,M2",,K1,5.0
-Computational Complexity Theory,CS 617,"M1,M2",,,4.0
-Linear Algebra and Computation,ES 627,"D1,D2",,,4.0
-Deep Learning,ES 667,"L1,L2",,,4.0
-Special Topics in Computer Science: Combinatorial and Computational Aspects of Games,CS 691-XVII,"M1,M2",,,4.0
-Special Topics in Computer Science: AI for Social Good,CS 691-XIX,"P1,P2",,,4.0
-Microprocessors and Embedded Systems,ES 333,"E1,E2",,"K1,M1",4.0
-High Voltage DC and Flexible AC Transmission Systems,EE 604,"J1,J2",,,4.0
-Advanced Signal Processing,EE 609,"C1,C2",,,4.0
-Artificial Intelligence,ES 612,"N1,N2",,,4.0
-Microelectronics Lab,EE 618,,,"J2,M2",2.0
-Special Electrical Machines,EE 619,"E1,E2",,,4.0
-Power Electronic Converters,EE 629,"A1,A2",B2,,4.0
-Electronic Instrumentation,ES 641,"M1,M2",,,4.0
-IC Design Laboratory,EE 652,,,"J1,L1",2.0
-Heterostructure Devices,EE 655,"L1,L2",,,4.0
-Analog IC Design Lab,EE 653,,,"I2,M1",2.0
-Medical Imaging Systems,ES 655,"K1,K2",,,4.0
-VLSI System Design,EE 657,"P1,P2",,,4.0
-Memory Device Technologies and Applications,EE 658,"I1,I2",,,4.0
-Power Management IC Design,EE 660,"N1,N2",,,4.0
-Advanced Transportation Electrification Technology,ES 665,"M1,M2",,,4.0
-Fundamentals of Nanoelectronic Devices,EE 661,"M1,M2",,,4.0
-"Matrix Methods for Signal Processing, Data Science, and Machine Learning",ES 670,"D1,D2",,,4.0
-Semiconductor Packaging,ES 672,"L1,L2",,,4.0
-Special Topics in Electrical Engineering: Regulation of Electric Sector,EE 691-V,"J1,J2",,,4.0
-"Drone Data Acquisition, Processing and Interpretation",EH 304,I2,,"J1,L1",2.0
-River Morphology and Ecology,EH 602,"G1,G2",,,4.0
-Quantitative Geomorphology,EH 604,"L1,L2",,,4.0
-Biodiversity Conservation and Sustainable Development,EH 608,"K1,K2",,,4.0
-Engineering Seismology and Seismic Hazard Analysis,EH 610,"N1,N2",,,4.0
-Statistical Seismology,EH 615,"J1,J2",,,4.0
-Ocean and Global Change,EH 612,"D1,D2",,,4.0
-Carbonate Sedimentology,EH 613,"A1,A2",,I1,4.0
-Climate of the Past,EH 621,L1,,"L2,K2",4.0
-Fluid Flow and Reactions in Reservoir Rocks,EH 622,"G1,G2",,,4.0
-Stratigraphic Evolution of Indian Continent,EH 623,"J1,J2",A2,,4.0
-Special Topics in Earth Sciences: Atmospheric Physics,EH 691-II,"C1,C2",,,4.0
-Special Topics in Earth Sciences: Interpreting Animals in the Human Past,EH 691-X,"K1,K2",,,4.0
-Integrated Design and Manufacturing I,ME 361,A1,,"J1,J2",2.0
-Combustion,ME 606,"N1,N2",,,4.0
-Modern Control Theory,ES 613,"E1,E2",,,4.0
-Human-Robot Interaction,ES 656,"G1,G2",,,4.0
-Advanced Fluid Mechanics,ME 628,"D1,D2",A1,,4.0
-Control of Nonlinear Dynamical Systems,ES 642,"C1,C2",,,4.0
-Convective Heat Transfer,ME 645,"K1,K2",,I2,4.0
-Elastodynamics and Vibrations,ES 646,"D1,D2",,,4.0
-Introduction to Turbulence,ME 646,"E1,E2",,,4.0
-Computational Inelasticity,ES 651,"E1,E2",,,4.0
-Nonlinear Continuum Mechanics,ES 653,"D1,D2",,,4.0
-Energy Systems,ES 632,"D1,D2",B2,,4.0
-Mechanics of composite materials,ES 671,"C1,C2",,,4.0
-Special Topics in Mechanical Engineering: Advanced Nonlinear Dynamics,ME 691-XV,"J1,J2",,,4.0
-Surface Engineering,MSE 355,"L1,L2",,,4.0
-Thin Film Processing and Characterization,MSE 603,"A1,A2",,,4.0
-Biomaterials for Tissue Regeneration,MSE 605,"D1,D2",,,4.0
-Process Plant Design – How to Set Up a Process Industry,MSE 621,"J1,J2",,,4.0
-Biomolecular Materials Science,ES 623,"E1,E2",,,4.0
-Interfaces in Materials,MSE 627,"E1,E2",,,4.0
-Semiconductor Materials and Fabrication Process,MSE 634,"B1,B2",,,4.0
+Course Name,Course Code,Lecture Time,Tutorial Time,Lab Time,Credit,Lecture Location,Tutorial Location,Lab Location
+Foundation Programme,FP 100,,,,4.0,,,
+Engineering Graphics,ES 101,C2,,"N1,N2",3.0,Jasubhai Auditorium,,
+Calculus of Single Variable and Linear Algebra,MA 103,"E1,E2",A1,,4.0,Jasubhai Auditorium,,
+Computing,ES 112,F1,,"P1,P2",3.0,Jasubhai Auditorium,,
+"Design, Innovation, and Prototyping",ES 115,C1,,"I1,K1,J1,L1,I2,M1,K2,L2,J2,M2",5.0,Jasubhai Auditorium,,
+Materials for the Future,ES 118,G1,,"I1,J1,I2,K2,J2,P2",3.0,Jasubhai Auditorium,,MSE Lab
+Introduction to Writing - 1,HS 191,,,"H1,H2",2.0,,,
+Undergraduate Science Laboratory,BS 192,,,"I1,K1,J1,L1,I2,M1,K2,L2,J2,M2",3.0,,,PH Lab
+World Civilizations and Cultures,HS 201,"D1,D2",,,4.0,,,
+Physical Education,PE 101,,,,0.0,,,
+Comprehensive Viva Voce,IN 101,,,,0.0,,,
+Biology for Engineers,ES 243,"D1,D2",A1,,4.0,Jasubhai Auditorium,Jasubhai Auditorium,
+General Education II,GE 201,"P1,P2",,,2.0,10/201,,
+Introduction to Quantum Physics,PH 202,"L1,L2",,,4.0,7/202,,
+Introduction to Philosophy,HS 221,"B1,B2",,,4.0,Jasubhai Auditorium,,
+Digital Systems,ES 204,"E1,E2",,"J1,J2",4.0,10/103,,"10/104,10/105"
+"Calculus of Several Variables 
+(First half of Semester)",MA 205,"F1,F2",C1,,2.0,10/103,,
+"Introduction to Complex Analysis
+(Second half of Semester)",MA 206,"C1,C2",A2,,2.0,7/206,"7104,7/105",
+Science Basket Course,ES XXX,,,,4.0,,,
+Thermodynamics,ES 211,"G1,G2",,,3.0,,,
+Materials Thermodynamics,MSE 202,"J1,J2",L1,,4.0,7/207,7/207,
+Electronic Devices,EE 221,"I1,I2",,,3.0,10/201,,
+Earth Materials and Processes,CE 201,E1,,"I1,K1",2.0,7/101,,7/206
+Chemical Process Calculations,CL 201,"E1,E2",,,3.0,10/102,,
+Data Structures and Algorithms I,ES 242,"N1,N2",,H2,4.0,10/103,,Jasubhai Auditorium
+"Signals, Systems, and Random Processes",ES 244,"G1,G2",H1,,4.0,10/201,10/201,
+Mechanics of solid,ES 221,"G1,G2",H2,,4.0,7/101,10/102,
+Discrete Mathematics,ES 214,"G1,G2",H1,,4.0,10/202,10/202,
+Geospatial Engineering,CE 203,E2,,"J1,L1",3.0,7/101,,7/201
+Electrical Machines,EE 223,"K1,K2",,"J1,L1,J2,M2",4.0,10/201,,EE Lab
+Structure of Materials,MSE 207,"G1,G2",H2,,4.0,7/104,11/205,
+Transport Phenomena in Materials Engineering,MSE 204,"E1,E2",H1,,4.0,7/210,10/102,
+Statics and Dynamics,ME 206,"E1,E2",,I1,4.0,7/209,,7/209
+Analog & Mixed Signal Circuits,EE 322,"E1,E2",,"I1,K1",4.0,10/201,,EE Lab
+Semiconductor Devices,EE XXX,,,,4.0,,,
+Unveiling the semiconductor world,EE XXX,,,,2.0,,,
+Physical Education,PE 103,,,,0.0,,,
+Comprehensive Viva Voce,IN 103,,,,0.0,,,
+Economics,HS 151,"J1,J2",H1,,4.0,Jasubhai Auditorium,,
+Foundations of AI: Multiagent Systems,CS 329,"C1,C2",,,4.0,10/201,,
+Machine Learning,ES 335,"P1,P2",L2,,4.0,10/103,10/103,
+HSS Elective,HS XXX,,,,4.0,,,
+Comprehensive Viva Voce,IN 105,,,,0.0,,,
+HSS Elective,HS 3XX,,,,,,,
+Comprehensive Viva Voce,IN 107,,,,0.0,,,
+Economics,HS 151,"J1,J2",H1,,4.0,Jasubhai Auditorium,,
+Chemical Reaction Engineering-II,CL 313,"G1,G2",,,3.0,7/102,,
+Separation Processes - I,CL 314,"E1,E2",,,3.0,7/102,,
+Process Dynamics and Control,CL 315,"D1,D2",,,3.0,7/102,,
+Integrated Chemical Engineering Lab-I,CL 326,,,"I2,M1,P1",3.0,,,CL Lab
+HSS Elective,HS XXX,,,,4.0,,,
+Comprehensive Viva Voce,IN 105,,,,0.0,,,
+HS Elective,HS XXX,,,,,,,
+Comprehensive Viva Voce,IN 107,,,,0.0,,,
+Economics,HS 151,"J1,J2",H1,,4.0,Jasubhai Auditorium,,
+Soil Mechanics,CE 301,"G1,G2",L2,"I1,K1",5.0,7/210,7/105,CE Lab
+Design of Steel Structures,CE 312,"D1,D2",H2,,4.0,7/101,11/101,
+Hydrology and Hydraulics,CE 310,"E1,E2",,L1,4.0,7/107,,7/105
+Transportation Engineering,CE 404,"F1,F2",,,4.0,7/104,,
+HSS Elective,HS XXX,,,,4.0,,,
+Comprehensive Viva Voce,IN 105,,,,0.0,,,
+Construction Technology & Management,CE 403,"E1,E2",,,4.0,7/105,,
+HSS Elective,HS XXX,,,,,,,
+Comprehensive Viva Voce,IN 107,,,,0.0,,,
+Economics,HS 151,"J1,J2",H1,,4.0,Jasubhai Auditorium,,
+Software Tools and Techniques for CSE,CS 202,D1,,"I1,K1",4.0,10/103,,"10/104,10/105"
+Operating Systems,CS 330,"F1,F2",L1,,4.0,10/201,"10/203,10/204,10/201",
+Computer Networks,CS 331,"G1,G2",H2,,4.0,10/103,,
+Foundations of AI: Multiagent Systems,CS 329,"C1,C2",,,4.0,10/201,,
+HSS Elective,HS 3XX,,,,,,,
+Comprehensive Viva Voce,IN 105,,,,0.0,,,
+HSS Elective,HS 3XX,,,,,,,
+Comprehensive Viva Voce,IN 107,,,,0.0,,,
+Economics,HS 151,"J1,J2",H1,,4.0,Jasubhai Auditorium,,
+Engineering Electromagnetics,EE 312,"G1,G2",H2,,4.0,7/109,10/202,
+Analog & Mixed Signal Circuits,EE 322,"E1,E2",,"I1,K1",4.0,10/201,,EE Lab
+Digital Signal Processing,EE 323,"D1,D2",A1,,4.0,10/202,"10/202,10/102",
+Power Electronics,EE 333,"C1,C2",C1,"I2,M1,J2,M2",4.0,10/202,10/102,EE Lab
+HSS Elective,HS XXX,,,,4.0,,,
+Comprehensive Viva Voce,IN 105,,,,0.0,,,
+HSS Elective (choose from list below),HS XXX,,,,,,,
+Comprehensive Viva Voce,IN 107,,,,0.0,,,
+Economics,HS 151,"J1,J2",H1,,4.0,Jasubhai Auditorium,,
+Control Systems,ES 245,"G1,G2",A1,,4.0,11/101,7/108,
+Mechanics of Materials,ME 333,"E1,E2",,I1,3.0,7/109,,ME Lab
+Heat and Mass Transfer,ME 334,"F1,F2",B1,"H1,K1",4.0,,"11/205,11/206,7/104",ME Lab
+Introduction to Manufacturing Systems and Metrology,ME 362,"D1,D2",,H2,3.0,7/108,,11/102
+HSS Elective,HS XXX,,,,,,,
+Comprehensive Viva Voce,IN 105,,,,0.0,,,
+HSS Elective,HS XXX,,,,,,,
+Comprehensive Viva Voce,IN 107,,,,0.0,,,
+Economics,HS 151,"J1,J2",H1,,4.0,Jasubhai Auditorium,,
+Materials Processing,MSE 307,"E1,E2",,,4.0,13/125,,
+"Polymers, Ceramics and Composites",MSE 313,"D1,D2",,I1,4.0,13/125,,ME Lab
+Principles of Metal Extraction and Refining,MSE 304,"G1,G2",,,4.0,7/105,,
+HSS Elective,HS XXX,,,,,,,
+Comprehensive Viva Voce,IN 105,,,,0.0,,,
+HSS Elective,HS XXX,,,,,,,
+Comprehensive Viva Voce,IN 107,,,,0.0,,,
+,Electives,,,,,,,
+Aarohan (For 2023 MSc and MA students),FP 501,,,,2.0,,,
+"Aarohan (For 2023 MTech, PGDIIT and PhD students)",FP 601,,,,2.0,,,
+Physical Education (For 2023 MSc and MA students),PE 500,,,,0.0,,,
+"Physical Education (For 2023 MTech, PGDIIT and PhD students)",PE 600,,,,0.0,,,
+Bionanotechnology – Principles and Applications,BE 303,"M1,M2",,,4.0,7/101,,
+Genetic Engineering – Principles and Applications,BE 404,"J1,J2",,,4.0,7/102,,
+Biochemistry,BE 613,"G1,G2",,,4.0,,,
+Biostatistics,BE 614,E1,,"I1,K1",4.0,7/208,,10/203
+Human Physiology,BE 616,"C1,C2",,,4.0,7/201,,
+Molecular Biotechnology,BE 618,E2,,"J1,L1",4.0,7/103,,BE Lab
+Advanced Geotechnical Engineering,CE 601,"G1,G2",,"I2,M1",5.0,7/108,,CE Lab
+Advanced Structural Analysis,CE 607,"L1,L2",,,4.0,13/124,,
+Advanced Engineering Hydrology,CE 611,"D1,D2",,,4.0,7/104,,
+Advanced Solid Mechanics,ES 621,"G1,G2",,,4.0,7/207,,
+Structural Dynamics,CE 622,"K1,K2",,,4.0,13/124,,
+Advanced Hydraulic Engineering,CE 625,"G1,G2",,,4.0,11/205,,
+Slopes and Retaining Structures,CE 627,"E1,E2",,,2.0,11/205,,
+Air Pollution Control Engineering,CE 634,"J1,J2",,,4.0,7/106,,
+Pavement Materials and Design,CE 635,"P1,P2",,,4.0,13/124,,
+Infrastructure Systems: Planning and Management,CE 637,"M1,M2",,,4.0,11/204,,
+Advanced Concrete Technology,CE 638,"I1,I2",,,4.0,13/124,,
+Special Topics in Civil Engineering: Domestic Wastewater Engineering (Treatment and Reuse),CE 691-VI,"E1,E2",,,4.0,7/106,,
+Special Topics in Civil Engineering:Administration of Contracts,CE 691-VIII,"N1,N2",,,4.0,13/124,,
+Introduction to Polymer Science and Engineering,CL 324,"I1,I2",,,4.0,7/205,,
+Chemical Engineering Practice in Industry,CL 328,K2,,,2.0,7/206,,
+Biochemical Engineering,CL 426,"D1,D2",,,4.0,7/106,,
+Formulation Science and Engineering,CL 427,"C1,C2",,,4.0,13/124,,
+Nanoscale Science,BS 401,"G1,G2",,,4.0,10/102,,
+Advanced Transport Phenomena,CL 601,"A1,A2",,,4.0,7/208,,
+Advanced Thermodynamics,CL 602,"F1,F2",,,4.0,7/210,,
+Advanced Reaction Engineering,CL 604,"B1,B2",,,4.0,7/103,,
+Engineering Optimization,ES 604,"L1,L2",,,4.0,7/205,,
+"Flexible Electronics: Materials, Methods and Devices",ES 662,"K1,K2",,,4.0,7/106,,
+Machine Learning,ES 335,"P1,P2",J1,,4.0,10/103,10/103,
+Computer and Network Security,CS 431,"M1,M2",,,4.0,10/201,,
+Software Engineering and Testing,CS 434,"J1,J2",A2,,4.0,11/101,7/210,
+Human-Computer Interaction,CS 435,"M1,M2",,,4.0,11/101,,
+Algorithms,CS 610,"C1,C2",,,4.0,11/101,,
+Computer Systems,CS 612,"G1,G2",,,4.0,7/203,,
+Natural Language Processing,CS 613,"K1,K2",,,4.0,10/202,,
+Theoretical Foundations of Machine Learning,CS 618,"N1,N2",,,4.0,11/205,,
+CS Theory Tool Kit,CS 619,"L1,L2",,,4.0,13/125,,
+Incentives and Machine Learning,CS 620,"N1,N2",,,4.0,7/101,,
+Algebraic Complexity Theory,CS 691-VIII,"I1,I2",,,4.0,11/205,,
+5G and Beyond: An Introduction,ES 417,"L1,L2",,,4.0,11/206,,
+Electric Vehicle Technology,EE 426,"L1,L2",,,4.0,11/204,,
+VLSI Design,EE 617,"F1,F2",,,4.0,7/105,,
+Physics of Transistors,EE 644,"G1,G2",,,4.0,7/209,,
+Dynamic Behaviour of Electric Machines,EE 648,"E1,E2",,I1,5.0,11/206,,EE Lab
+Introduction to Photonics,ES 414,"P1,P2",J1,,4.0,13/125,13/125,
+Digital Control Systems,ES 616,"B1,B2",H2,,4.0,11/204,13/124,
+Microfabrication and Semiconductor Processes,ES 626,"I1,I2",,,4.0,7/210,,
+CMOS Analog IC Design,EE 651,"N1,N2",,,4.0,7/210,,
+Biomedical Ultrasound,ES 657,"P1,P2",,,4.0,11/204,,
+Smart Grid,EE 659,"K1,K2",,,4.0,13/125,,
+Smart Renewable Energy Systems,ES 663,"M1,M2",,,4.0,13/124,,
+Computer Vision,ES 666,"E1,E2",,,4.0,,,
+5G and Beyound,ES 668,"N1,N2",,,4.0,13/125,,
+Special Topics in Electrical Engineering: Economics of Regulation in India,EE 691-VII,"I1,I2",,,4.0,11/204,,
+Selected Topics in Electrical Engineering: Mixed-Signal IC Design,EE 691-XI,"K1,K2",,,4.0,11/204,,
+Mechatronics,ES 408,"M1,M2",,,4.0,7/103,,
+Foundations of Fluid Dynamics,ES 607,"G1,G2",A1,,4.0,7/106,7/207,
+Computational Fluid Dynamics,ME 605,"E1,E2",B1,,4.0,7/104,7/101,
+Advanced Solid Mechanics,ES 621,"G1,G2",,,4.0,7/207,,
+Introduction to Robotics,ME 639,"G1,G2",,,4.0,7/201,,
+Fracture Mechanics,ME 640,"J1,J2",,,4.0,11/204,,
+Elastodynamics and Vibrations,ES 646,"L1,L2",,,4.0,11/205,,
+Vapor Liquid Phase Change Phenomena,ME 647,"N1,N2",,,4.0,7/204,,
+Special Topics in Mechanical Engineering - Mathematical Methods for Mechanical Engineers,ME 691-XIV,"K1,K2",J1,,4.0,7/101,7/210,
+Science and Technology of Welding and Joining,MSE 403,"N1,N2",,,4.0,7/206,,
+Nature Inspired Materials Design,ES 415,"F1,F2",,,4.0,7/103,,
+Deformation Behavior of Materials,MSE 604,"A1,A2",,,4.0,11/101,,
+Advanced Alloy Design and Processing,MSE 635,"C1,C2",,,4.0,7/207,,
+Structure and Defects of Materials,MSE 629,"G1,G2",,,4.0,7/205,,
+Characterization of Materials,MSE 632,"A1,A2",,"J1,L1",4.0,7/209,,MSE Lab
+Electrochemical Science and Engineering,CH 302,"N1,N2",J2,,4.0,11/204,13/125,
+Food Chemistry,CH 401,"L1,L2",J2,,4.0,7/208,7/208,
+Physical Organic Chemistry,CH 506,"E1,E2",,,4.0,7/201,,
+Main Group and Transition Metal Chemistry,CH 510,"M1,M2",,,4.0,7/104,,
+Quantum Chemistry,CH 511,"D1,D2",,,4.0,7/202,,
+Advanced Organic Chemistry,CH 513,"C1,C2",,,4.0,7/108,,
+Inorganic Chemistry Laboratory,CH 522,,,"I1,K1,I2,M1",2.0,,,CH Lab
+Organic Chemistry Laboratory,CH 523,,,"J1,L1,K2,L2",2.0,,,CH Lab
+Analytical and Computational Chemistry Laboratory,CH 524,,,"J2,M2",2.0,,,10/203
+Applied Chemical Biology,CH 616,"E1,E2",,,4.0,7/201,,
+Interpretative Organic Spectroscopy,CH 622,"G1,G2",,,4.0,7/202,,
+Molecular Spectroscopy,CH 624,"I1,I2",,,4.0,7/104,,
+Asymmetric Synthesis and Catalysis,CH 626,"E1,E2",,,4.0,7/202,,
+Chemical Crystallography,CH 635,"B1,B2",,I1,4.0,7/105,,CH Lab
+Statistical Thermodynamics and its Applications in Chemistry,CH 636,"M1,M2",,,4.0,13/125,,
+Bio-inorganic Chemistry,CH 640,"N1,N2",,,4.0,7/103,,
+Chemistry of Energy Materials,CH 641,"P1,P2",,,4.0,7/103,,
+Non-linear Spectroscopy and its Applications,CH 642,"K1,K2",,,4.0,7/210,,
+Basic Algebra,MA 501,"E1,E2",B1,,4.0,,10/102,
+Linear Algebra,MA 504 (A),"D1,D2",B2,,4.0,7/208,7/208,
+Real Analysis of One Variable,MA 509 (A),"C1,C2",A2,,4.0,7/205,7/101,
+Topology,MA 510,"G1,G2",A1,,4.0,7/208,7/109,
+Commutative Algebra,MA 605,"F1,F2",,,4.0,11/204,,
+Partial Differential Equations,MA 624,"I1,I2",F2,,4.0,7/207,7/207,
+Functional Analysis,MA 626,"K1,K2",L2,,4.0,7/207,7/207,
+Algebraic Topology,MA 627,"M1,M2",,,4.0,7/106,,
+Measure Theory & Probability,MA 630 (A),"N1,N2",P1,,4.0,7/107,7/107,
+Algebraic Number Theory,MA 634,"D1,D2",,,4.0,11/206,,
+Integral Geometry in Imaging Sciences,MA 640,"L1,L2",,,4.0,7/210,,
+Numerical Analysis for Partial Differential Equations,MA 643,"I1,I2",,,4.0,13/125,,
+Optimization methods for machine learning,ES 645,"J1,J2",,,4.0,7/104,,
+Mathematical Methods of Physics I,PH 502,"G1,G2",K1,,4.0,11/102,11/101,
+Quantum Mechanics I,PH 503,"E1,E2",K2,,4.0,11/102,11/101,
+Classical Electrodynamics,PH 505,"C1,C2",J2,,4.0,7/107,7/203,
+Classical Mechanics,PH 508,"D1,D2",,,4.0,7/209,,
+Condensed Matter Physics,PH 510,"D1,D2",J1,,4.0,7/206,7/203,
+Topics and Classical Mechanics and Electrodynamics,PH 605,"D1,D2",,,4.0,11/205,,
+Quantum Field Theory I,PH 610,"G1,G2",,,4.0,5/202,,
+X-ray Scattering: Concepts and Applications,PH 611,"A1,A2",,,4.0,13/124,,
+Atomic and Molecular Physics,PH 614,"F1,F2",,,4.0,5/202,,
+Quantum computing and Information,PH 643,"I1,I2",,,4.0,7/106,,
+Topics in Soft and Active Matter Physics,PH 645,"B1,B2",,,4.0,13/125,,
+Advanced Statistical Physics,PH 646,"E1,E2",,,4.0,11/204,,
+Particle Physics and Gauge Theories,PH 647,"E1,E2",,,4.0,7/205,,
+Earth Surface Processes in the Anthropocene,EH 601,"G1,G2",,J1,4.0,13/125,,11/205
+Modelling of of Earth System adn Sustainability,EH 605,"L1,L2",,,4.0,11/101,,
+Biodiversity Conservation and Sustainable Development,EH 608,"C1,C2",,,4.0,7/102,,
+Near Surface Geophysics,EH 611,"A1,A2",,,4.0,7/201,,
+Carbonate Sedimentology,EH 613,"D1,D2",,,4.0,13/124,,
+Geobiology,EH 619,"D1,D2",,,4.0,11/204,,
+Special Topics in Earth Science: Microwave Remote Sensing,EH 691-III,"B1,B2",,,4.0,13/124,,
+Computation and Cognition,CG 501,"B1,B2",,,4.0,7/102,,
+Fundamentals of Cognitive Psychology,CG 503,"G1,G2",,,4.0,7/206,,
+Research Methods in Cognitive Science,CG 504,"E1,E2",,,4.0,10/202,,
+Fundamental Neuroscience,CG 505,"D1,D2",,,4.0,7/107,,
+Philosophy of Mind,CG 606,"C1,C2",,,4.0,7/203,,
+Neural Plasticity,CG 612,"A1,A2",,,4.0,13/125,,
+Special Topics in Cognitive Sciences: Second Language Acquisition,CG 691-VI,"M1,M2",,,4.0,7/105,,
+"Special Topics in Cognitive Sciences: Language, Culture and Cognition",CG 691-VII,"F1,F2",,,4.0,13/124,,
+Writing (PG),FP 602,F2,,"H1,H2",4.0,Jasubhai Auditorium,,
+Foundational Sanskrit,HS 104,"L1,L2",J2,,4.0,7/103,7/210,
+Japan Studies,HS 108,"K1,K2",,,2.0,7/103,,
+Japanese Language for Beginners,HS 152,"P1,P2",L1,,4.0,11/102,11/102,
+Advance Japanese Learning,HS 153,"I1,I2",L2,,4.0,11/102,11/102,
+Mandarin for Beginners,HS 154,"N1,N2",,,4.0,7/104,,
+Mandarin for Beginners - II,HS 155,"L1,L2",,,4.0,7/203,,
+Ancient Indian Technology,IN 304,"N1,N2",,,4.0,7/205,,
+Special Topics: Foundations of User Experience,IN 491,"N1,N2",,,4.0,Online,,
+Introduction to Archaeology,HS 425,"K1,K2",,,4.0,7/102,,
+Understanding and Designing Comics,HS 491-XI,"N1,N2",,,4.0,10/102,,
+Business Ethics and Responsible Leadership,MS 492-IV,"M1,M2",,,2.0,7/102,,
+"Humanism, Antihumanism, Posthumanism",HS 507,"J1,J2",,,4.0,7/105,,
+Perspectives on Indian Civilization,HS 510,"G1,G2",,,4.0,7/107,,
+Political Thought,HS 512,"E1,E2",,,4.0,7/108,,
+Ancient Indian Architecture,HS 520,"L1,L2",,,4.0,7/102,,
+Development Economics,HS 521,"K1,K2",,,4.0,11/102,,
+Qualitative Research Methods,HS 524,"C1,C2",,,4.0,7/202,,
+Special Topics in Design: Game Appreciation and Game Aesthetics,DES 591-I,"M1,M2",,,4.0,7/210,,
+Digital Cultures and New Media,HS 631,"L1,L2",,,4.0,7/104,,
+Scarred Nations,HS 633,"L1,L2",,,4.0,7/204,,
+"Literature, Theory and Social Context",HS 647,"D1,D2",,,4.0,7/201,,
+Critical Perspectives in Sociology,HS 651,"D1,D2",,,4.0,10/102,,
+"Reading Philosophy: Classical, Contemporary, and 
+Global Perspectives",HS 652,"J1,J2",,,4.0,7/105,,
+Academic Communication: Argumentation and Reasoning,HS 655,"K1,K2",,,2.0,7/104,,
+Techniques of linguistic and cultural documentation,HS 691-XI,"P1,P2",,,4.0,7/104,,

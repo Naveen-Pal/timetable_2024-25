@@ -8,8 +8,15 @@
     ],
     "routes": [
         {
+            "src": "/api/(.*)",
+            "dest": "/app.py"
+        },
+        {
             "src": "/(.*)",
-            "dest": "/"
+            "dest": "/app.py"
         }
-    ]
+    ],
+    "env": {
+        "PYTHONUNBUFFERED": "1"
+    }
 }

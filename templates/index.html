@@ -6,136 +6,59 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="/static/css/style.css">
     <title>IIT Gandhinagar Time Table</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            /* padding: 40px; */
-            text-align: center;
-            background-color: #f4f4f9;
-            color: #333;
-        }
-        .pre_image{
-            display: flex;
-            justify-content: center;
-        }
-        img{
-            display:none;
-            width: 70vw;
-        }
-        
-        #search-field {
-            width: 75%;
-            padding: 12px;
-            margin: 20px 0 0 0;
-            font-size: 16px;
-            border: 1px solid black;
-            border-radius: 5px;
-        }
-
-        #search-field:focus {
-            outline: none;
-            border: 1px solid black;
-            border-bottom: 2px solid #0066cc;
-            border-radius: 5px;
-        }
-
-        table {
-            width: auto;
-            margin: 20px auto;
-            border-collapse: collapse;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        th,
-        td {
-            border: 1px solid #ccc;
-            padding: 10px;
-            text-align: left;
-        }
-
-        th {
-            background-color: #0066cc;
-            color: #ffffff;
-        }
-
-        footer {
-            background-color: #000000;
-            color: white;
-            padding: 10px 0;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            flex-wrap: wrap;
-            font-size: 14px;
-            margin-top: 10px;
-        }
-
-        .footer-section {
-            margin: 10px 20px;
-            text-align: center;
-        }
-
-        .footer-section a {
-            color: #64b2ff;
-            text-decoration: none;
-        }
-
-        .footer-section a:hover {
-            text-decoration: underline;
-        }
-
-        button {
-            padding: 12px 24px;
-            font-size: 16px;
-            cursor: pointer;
-            background-color: #28a745;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            position: sticky;
-            bottom: 20px;
-            margin: 10px;
-        }
-
-        a {
-            color: #64b2ff;
-        }
-
-        @media (max-width: 600px) {
-            table {
-                width: 100%;
-            }
-
-            body {
-                padding: 20px;
-            }
-
-            footer {
-                flex-direction: column;
-            }
-
-            .footer-section {
-                margin: 10px 0;
-            }
-            img{
-                width: 90vw;
-            }
-        }
-    </style>
 </head>
 
 <body>
-    <h1>IIT Gandhinagar Timetable Portal</h1>
-    <div class="pre_image">    
-        <img id="timetable-preview" src="" alt="Timetable Preview"/>
-    </div>
-    <input name="search-field" id="search-field" placeholder="Search for courses ...">
-    <h3>Select your courses</h3>
-    <!-- <p>Participate in IR&P's <a href="https://docs.google.com/document/d/1RYUmjl5NWMwgzuKrh-myMM_nPYfSYbKpiud_NQYRur8/edit?tab=t.0">Build-a-thon</a> :)</p> -->
-    <form action="/generate-timetable" method="post">
-        <table role="table">
+    <header>
+        <div class="container">
+            <h1>IIT Gandhinagar Timetable Portal</h1>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="message-box error" id="error-box"></div>
+        <div class="message-box success" id="success-box"></div>
+                        
+        <div class="download-options" id="download-options" style="display: none;">
+            <h3>Downloads</h3>
+            <div class="option-buttons">
+                <button type="button" class="option-button image" id="download-image">
+                    <i class="fa fa-file-image-o" aria-hidden="true"></i> Image (.png)
+                </button>
+                <button type="button" class="option-button excel" id="download-excel">
+                    <i class="fa fa-file-excel-o" aria-hidden="true"></i> Excel (.xlsx)
+                </button>
+                <button type="button" class="option-button csv" id="download-csv">
+                    <i class="fa fa-file-text-o" aria-hidden="true"></i> CSV (.csv)
+                </button>
+            </div>
+        </div>
+
+        <div class="timetable-container" id="timetable-container">
+            <!-- Timetable will be rendered here -->
+        </div>
+        
+        <div class="credits-counter">
+            Total Credits: <span id="total-credits">0</span>
+        </div>
+        
+        <div class="controls">
+            <div class="buttons-container">
+                <button type="button" id="preview-button" class="primary-btn" aria-label="Preview Timetable">
+                    <i class="fa fa-eye" aria-hidden="true"></i> Generate Timetable
+                </button>
+                <button type="button" id="deselect-all" class="secondary-btn" aria-label="Deselect All">
+                    <i class="fa fa-times" aria-hidden="true"></i> Deselect All
+                </button>
+            </div>
+        </div>
+        
+        <h3 class="courses-heading">Select your courses</h3>
+        <input name="search-field" id="search-field" placeholder="Search for courses...">
+        
+        <table class="courses-table" role="table">
             <thead>
                 <tr>
                     <th>Course Code</th>
@@ -144,111 +67,31 @@
                     <th>Pick</th>
                 </tr>
             </thead>
-            <tbody>
-                {% for course in courses %}
+            <tbody id="course-table-body">
+                <!-- Course data will be populated here -->
                 <tr>
-                    <td>{{ course.code }}</td>
-                    <td>{{ course.name }}</td>
-                    <td>{{ course.credits }}</td>
-                    <td><input type="checkbox" name="courses" value="{{ course.code }}" data-credits="{{ course.credits }}" class="course-checkbox"></td>
+                    <td colspan="4">Loading courses...</td>
                 </tr>
-                {% endfor %}
             </tbody>
         </table>
-        <button type="button" id="preview-button" aria-label="Preview Timetable"><i class="fa fa-eye fa-2x" aria-hidden="true"></i><span id="total-credits-display">(0)</span></button>
-        <button type="submit" aria-label="Generate Timetable"><i class="fa fa-download fa-2x" aria-hidden="true"></i> </button>
-    </form>
+    </div>
+    
     <footer>
         <div class="footer-section">
-            <p><a href="https://github.com/Naveen-Pal/timetable_2024-25">GitHub Repository</a></p>
+            <p><a href="https://github.com/Naveen-Pal/timetable_2024-25" target="_blank" rel="noopener">GitHub Repository</a></p>
         </div>
         <div class="footer-section">
-            <p>ContactMe: <i class="fa fa-envelope" aria-hidden="true"></i>23110216@iitgn.ac.in </p>
+            <p>Contact Me: <i class="fa fa-envelope" aria-hidden="true"></i> 23110216@iitgn.ac.in</p>
         </div>
         <div class="footer-section">
             <p>Made with ❤️ by x0 (System club)</p>
         </div>
     </footer>
 
-    <script>
-    const searchField = document.getElementById('search-field');
-    const rows = document.querySelectorAll('tbody tr');
-    const totalCreditsDisplay = document.getElementById('total-credits-display');
-    const prev = document.getElementById("timetable-preview");
-    const previewButton = document.getElementById('preview-button');
-    const sessionId = "{{ session_id }}"
-
-    searchField.addEventListener('input', (e) => {
-        const searchValue = e.target.value.toLowerCase();
-        rows.forEach(row => {
-            const courseName = row.textContent.toLowerCase();
-            row.style.display = courseName.includes(searchValue) ? '' : 'none';
-        });
-    });
-
-    const checkboxes = document.querySelectorAll('.course-checkbox');
-
-    function updateTotalCredits() {
-        let totalCredits = 0;
-        checkboxes.forEach(checkbox => {
-            if (checkbox.checked) {
-                totalCredits += parseInt(checkbox.getAttribute('data-credits'));
-            }
-        });
-        totalCreditsDisplay.textContent = `(${totalCredits})`;
-    }
-
-    function updatePreview() {
-    const selectedCourses = Array.from(checkboxes)
-        .filter(checkbox => checkbox.checked)
-        .map(checkbox => checkbox.value);
-
-    if (selectedCourses.length === 0) {
-        alert("Please select at least one course to preview.");
-        return;
-    }
-
-    // Create a fetch request to generate the timetable image
-    fetch(`/preview-timetable`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ courses: selectedCourses })
-    })
-    .then(response => {
-        if (response.ok) {
-            return response.blob(); // Get the image as a blob
-        }
-        throw new Error('Failed to generate timetable preview');
-    })
-    .then(blob => {
-        const url = URL.createObjectURL(blob);
-        prev.src = url; // Set the src to the blob URL
-        prev.style.display = "block"; // Make the image visible
-    })
-    .catch(error => {
-        console.error(error);
-        alert('Error generating preview: ' + error.message);
-    });
-}
-
-
-    checkboxes.forEach(checkbox => {
-        checkbox.addEventListener('change', () => {
-            updateTotalCredits();
-        });
-    });
-
-    previewButton.addEventListener('click', () => {
-        window.scrollTo(0, 0); // Scroll to the top of the page
-        updatePreview(); // Update the preview image
-    });
-
-    updateTotalCredits();
-
-</script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    
+    <script src="/static/js/timetable.js"></script>
 </body>
 
 </html>

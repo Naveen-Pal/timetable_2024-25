@@ -1,0 +1,554 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    text-align: center;
+    background-color: #f4f4f9;
+    color: #333;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+header {
+    background-color: #0066cc;
+    color: white;
+    padding: 1rem 0;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 1.8rem;
+}
+
+.pre_image {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    min-height: 100px;
+    margin: 20px 0;
+}
+
+.timetable-container {
+    background-color: white;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    font-family: 'Times New Roman', Times, serif;
+    margin-bottom: 20px;
+    overflow-x: auto;
+    max-width: 100%;
+}
+
+.timetable {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+
+.timetable th,
+.timetable td {
+    border: 1px solid #ddd;
+    padding: 5px;
+    text-align: center;
+    max-width: 120px;
+    white-space: normal;
+    word-break: break-word;
+    vertical-align: top;
+    height: auto;
+    min-height: 60px;
+}
+
+.timetable th {
+    background-color: #0066cc;
+    color: white;
+    font-weight: bold;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.timetable tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.timetable td.time-slot {
+    background-color: #f0f0f0;
+    font-weight: bold;
+    font-size: 0.8rem;
+}
+
+.timetable td.clash {
+    background-color: #ff3737;
+}
+
+.course-cell {
+    min-height: 45px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 3px;
+    font-size: 0.85rem;
+    gap: 3px; /* Add spacing between lines */
+}
+
+.course-code {
+    font-weight: bold;
+    color: #0066cc;
+    /* Ensure course code is fully visible */
+    word-break: keep-all;
+    white-space: nowrap;
+    overflow: visible;
+    display: block; /* Make sure it's on its own line */
+    width: 100%;
+    text-align: center;
+}
+
+.course-name {
+    font-size: 0.75rem;
+    color: #333;
+    display: block; /* Make sure it's on its own line */
+    width: 100%;
+    text-align: center;
+    margin-top: 1px;
+    margin-bottom: 1px;
+}
+
+.course-type {
+    font-size: 0.75rem;
+    color: #666;
+    display: block; /* Make sure it's on its own line */
+    width: 100%;
+    text-align: center;
+    margin-top: 1px;
+}
+
+.course-location {
+    font-size: 0.7rem;
+    color: #666;
+    font-style: italic;
+    display: block; /* Make sure it's on its own line */
+    width: 100%;
+    text-align: center;
+    margin-top: 1px;
+}
+
+.course-clash {
+    font-weight: bold;
+    color: #ff0000;
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin-top: 2px;
+}
+
+.course-clash-separator {
+    color: #333;
+    font-weight: normal;
+}
+
+.slot-code {
+    font-family: monospace;
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #555;
+    display: block;
+    text-align: center;
+    padding: 5px 0;
+}
+
+.controls {
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+    padding: 15px;
+    border-radius: 8px;
+    background-color: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    /* Ensure it's not blocking content */
+    position: relative;
+    z-index: 10;
+    pointer-events: auto;
+}
+
+.sticky-controls {
+    position: fixed;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+    margin-bottom: 20px;
+    width: auto;
+    min-width: 300px;
+    max-width: 90%;
+}
+
+#search-field {
+    width: 90%;
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    margin-bottom: 10px;
+}
+
+#search-field:focus {
+    outline: none;
+    border: 1px solid #0066cc;
+    box-shadow: 0 2px 8px rgba(0, 102, 204, 0.2);
+    border-radius: 5px;
+}
+
+.loader {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50px;
+    height: 50px;
+    border: 5px solid rgba(0, 102, 204, 0.3);
+    border-radius: 50%;
+    border-top-color: #0066cc;
+    animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+.courses-heading {
+    margin: 30px 20px 15px;
+    color: #0066cc;
+}
+
+.courses-table {
+    width: 100%;
+    margin: 20px 0;
+    border-collapse: collapse;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+    z-index: 5;
+    pointer-events: auto;
+}
+
+.courses-table th,
+.courses-table td {
+    border: 1px solid #ccc;
+    padding: 12px;
+    text-align: left;
+}
+
+.courses-table th {
+    background-color: #0066cc;
+    color: #ffffff;
+}
+
+.courses-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.courses-table tr:hover {
+    background-color: #f0f7ff;
+    cursor: pointer;
+}
+
+.courses-table tr {
+    position: relative;
+    z-index: 6;
+}
+
+.courses-table input[type="checkbox"] {
+    transform: scale(1.5);
+    cursor: pointer;
+}
+
+.course-checkbox-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    position: relative;
+    z-index: 7;
+}
+
+.download-options {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px 0;
+    background-color: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+}
+
+.download-options h3 {
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.option-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+button {
+    padding: 12px 24px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    margin: 5px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.primary-btn {
+    background-color: #0066cc;
+    color: white;
+}
+
+.primary-btn:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.secondary-btn {
+    background-color: #dc3545;
+    color: white;
+}
+
+.secondary-btn:hover {
+    background-color: #c82333;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.option-button {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    background-color: #f0f0f0;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 14px;
+}
+
+.option-button:hover {
+    background-color: #e0e0e0;
+    transform: translateY(-2px);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.option-button.image {
+    background-color: #28a745;
+    color: white;
+}
+
+.option-button.excel {
+    background-color: #217346;
+    color: white;
+}
+
+.option-button.csv {
+    background-color: #f8991d;
+    color: white;
+}
+
+.buttons-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 5px 0;
+}
+
+.message-box {
+    padding: 10px 20px;
+    margin: 10px auto;
+    border-radius: 4px;
+    display: none;
+    width: 80%;
+    max-width: 600px;
+}
+
+.error {
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    color: #721c24;
+}
+
+.success {
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
+    color: #155724;
+}
+
+footer {
+    background-color: #000000;
+    color: white;
+    padding: 10px 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    font-size: 14px;
+    margin-top: 30px;
+}
+
+.footer-section {
+    margin: 10px 20px;
+    text-align: center;
+}
+
+.footer-section a {
+    color: #64b2ff;
+    text-decoration: none;
+}
+
+.footer-section a:hover {
+    text-decoration: underline;
+}
+
+.credits-counter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 15px 0;
+    font-size: 1.1rem;
+    background-color: white;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.credits-counter span {
+    font-weight: bold;
+    margin-left: 5px;
+    color: #0066cc;
+}
+
+/* Responsive design improvements */
+@media (max-width: 768px) {
+    .controls {
+        flex-direction: column;
+    }
+    
+    .option-buttons {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .option-button {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .download-options {
+        width: 90%;
+        margin: 15px auto;
+    }
+    
+    .timetable th,
+    .timetable td {
+        padding: 2px 4px;
+        font-size: 0.75rem;
+    }
+    
+    header h1 {
+        font-size: 1.5rem;
+    }
+    
+    .courses-table th,
+    .courses-table td {
+        padding: 6px;
+        font-size: 0.8rem;
+    }
+    
+    .timetable {
+        font-size: 0.75rem;
+    }
+    
+    .course-cell {
+        min-height: 35px;
+        padding: 2px;
+    }
+    
+    /* Responsive preview: show only essential info on small screens */
+    .course-location {
+        display: none;
+    }
+    
+    /* Abbreviate day names on small screens */
+    .timetable th.day-header {
+        font-size: 0.7rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .timetable th,
+    .timetable td {
+        padding: 1px 2px;
+        font-size: 0.65rem;
+    }
+    
+    .course-cell {
+        min-height: 25px;
+    }
+    
+    /* For very small screens, keep just code and type */
+    .course-name {
+        display: none;
+    }
+    
+    /* Show only first letter of day names on very small screens */
+    .timetable th.day-header {
+        font-size: 0.65rem;
+    }
+    
+    .timetable th.day-header span.day-full {
+        display: none;
+    }
+    
+    .timetable th.day-header span.day-abbr {
+        display: inline;
+    }
+}
+
+@media print {
+    header, .controls, .download-options, footer, button, #search-field {
+        display: none !important;
+    }
+    
+    .timetable-container {
+        box-shadow: none;
+        padding: 0;
+    }
+    
+    body {
+        background-color: white;
+    }
+}
