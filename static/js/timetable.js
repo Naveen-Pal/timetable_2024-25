@@ -245,40 +245,43 @@ document.addEventListener('DOMContentLoaded', function() {
                                 codeSpan.className = 'course-code';
                                 codeSpan.textContent = contentLines[0];
                                 courseCell.appendChild(codeSpan);
-                            
-                                if (contentLines.length > 1 && contentLines[1]) {
-                                    const nameSpan = document.createElement('span');
-                                    nameSpan.className = 'course-name';
-                                    nameSpan.textContent = contentLines[1];
-                                    courseCell.appendChild(nameSpan);
+                                
+                                if (cells[j].includes('(Clash)')) {
+                                    const clashSpan = document.createElement('span');
+                                    clashSpan.className = 'course-clash';
+                                    clashSpan.textContent = '(Clash)';
+                                    courseCell.appendChild(clashSpan);
                                 }
-                            
-                                if (contentLines.length > 2 && contentLines[2]) {
-                                    const typeSpan = document.createElement('span');
-                                    typeSpan.className = 'course-type';
-                                    typeSpan.textContent = contentLines[2];
-                                    courseCell.appendChild(typeSpan);
+                                else {
+
+                                    if (contentLines.length > 1 && contentLines[1]) {
+                                        const nameSpan = document.createElement('span');
+                                        nameSpan.className = 'course-name';
+                                        nameSpan.textContent = contentLines[1];
+                                        courseCell.appendChild(nameSpan);
+                                    }
+                                    
+                                    if (contentLines.length > 2 && contentLines[2]) {
+                                        const typeSpan = document.createElement('span');
+                                        typeSpan.className = 'course-type';
+                                        typeSpan.textContent = contentLines[2];
+                                        courseCell.appendChild(typeSpan);
+                                    }
+                                    
+                                    if (contentLines.length > 3 && contentLines[3]) {
+                                        const locationSpan = document.createElement('span');
+                                        locationSpan.className = 'course-location';
+                                        locationSpan.textContent = contentLines[3];
+                                        courseCell.appendChild(locationSpan);
+                                    }
                                 }
-                            
-                                if (contentLines.length > 3 && contentLines[3]) {
-                                    const locationSpan = document.createElement('span');
-                                    locationSpan.className = 'course-location';
-                                    locationSpan.textContent = contentLines[3];
-                                    courseCell.appendChild(locationSpan);
-                                }
+                                
+                                
+                                cell.appendChild(courseCell);
                             }
-                        
-                        if (cells[j].includes('(Clash)')) {
-                            const clashSpan = document.createElement('span');
-                            clashSpan.className = 'course-clash';
-                            clashSpan.textContent = '(Clash)';
-                            courseCell.appendChild(clashSpan);
                         }
-                        
-                        cell.appendChild(courseCell);
-                    }
-                    
-                    row.appendChild(cell);
+                            
+                            row.appendChild(cell);
                 }
                 
                 tbody.appendChild(row);
