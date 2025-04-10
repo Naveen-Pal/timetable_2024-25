@@ -1,5 +1,4 @@
 Flask
 Werkzeug
 pandas
-Pillow
 gunicorn
