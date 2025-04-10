@@ -3,7 +3,3 @@ Werkzeug
 pandas
 Pillow
 gunicorn
-numpy
-python-dateutil
-pytz
-openpyxl
