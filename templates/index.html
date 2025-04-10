@@ -13,7 +13,8 @@
 <body>
     <header>
         <div class="container">
-            <h1>IIT Gandhinagar Timetable Portal</h1>
+            <h1><i class="fa fa-calendar" aria-hidden="true"></i> IIT Gandhinagar Timetable</h1>
+            <p class="header-subtitle">Academic Year 2025-26 Semester-I</p>
         </div>
     </header>
 
@@ -21,17 +22,17 @@
         <div class="message-box error" id="error-box"></div>
         <div class="message-box success" id="success-box"></div>
                         
-        <div class="download-options" id="download-options" style="display: none;">
-            <h3>Downloads</h3>
+        <div class="download-options card" id="download-options" style="display: none;">
+            <h3><i class="fa fa-download" aria-hidden="true"></i> Downloads</h3>
             <div class="option-buttons">
                 <button type="button" class="option-button image" id="download-image">
-                    <i class="fa fa-file-image-o" aria-hidden="true"></i> Image (.png)
+                    <i class="fa fa-file-image-o" aria-hidden="true"></i> <span class="btn-text">Image</span>
                 </button>
                 <button type="button" class="option-button excel" id="download-excel">
-                    <i class="fa fa-file-excel-o" aria-hidden="true"></i> Excel (.xlsx)
+                    <i class="fa fa-file-excel-o" aria-hidden="true"></i> <span class="btn-text">Excel</span>
                 </button>
                 <button type="button" class="option-button csv" id="download-csv">
-                    <i class="fa fa-file-text-o" aria-hidden="true"></i> CSV (.csv)
+                    <i class="fa fa-file-text-o" aria-hidden="true"></i> <span class="btn-text">CSV</span>
                 </button>
             </div>
         </div>
@@ -40,23 +41,11 @@
             <!-- Timetable will be rendered here -->
         </div>
         
-        <div class="credits-counter">
-            Total Credits: <span id="total-credits">0</span>
+        <h3 class="courses-heading"><i class="fa fa-book" aria-hidden="true"></i> Select your courses</h3>
+        <div class="search-container">
+            <i class="fa fa-search search-icon" aria-hidden="true"></i>
+            <input name="search-field" id="search-field" placeholder="Search for courses...">
         </div>
-        
-        <div class="controls">
-            <div class="buttons-container">
-                <button type="button" id="preview-button" class="primary-btn" aria-label="Preview Timetable">
-                    <i class="fa fa-eye" aria-hidden="true"></i> Generate Timetable
-                </button>
-                <button type="button" id="deselect-all" class="secondary-btn" aria-label="Deselect All">
-                    <i class="fa fa-times" aria-hidden="true"></i> Deselect All
-                </button>
-            </div>
-        </div>
-        
-        <h3 class="courses-heading">Select your courses</h3>
-        <input name="search-field" id="search-field" placeholder="Search for courses...">
         
         <table class="courses-table" role="table">
             <thead>
@@ -76,15 +65,35 @@
         </table>
     </div>
     
+    <!-- Sticky controls at the bottom with credits counter -->
+    <div class="controls sticky-controls" id="sticky-controls">
+        <div class="left-controls">
+            <div class="credits-counter" id="credits-counter">
+                <i class="fa fa-graduation-cap" aria-hidden="true"></i> <span id="total-credits">0</span>
+            </div>
+            <button type="button" id="go-to-top" class="goto-top-btn" aria-label="Go to top">
+                <i class="fa fa-arrow-up" aria-hidden="true"></i> <span class="btn-text">Top</span>
+            </button>
+        </div>
+        <div class="buttons-container">
+            <button type="button" id="preview-button" class="primary-btn" aria-label="Preview Timetable">
+                <i class="fa fa-eye" aria-hidden="true"></i> <span class="btn-text">Generate</span>
+            </button>
+            <button type="button" id="deselect-all" class="secondary-btn" aria-label="Deselect All">
+                <i class="fa fa-times" aria-hidden="true"></i> <span class="btn-text">Clear</span>
+            </button>
+        </div>
+    </div>
+    
     <footer>
         <div class="footer-section">
-            <p><a href="https://github.com/Naveen-Pal/timetable_2024-25" target="_blank" rel="noopener">GitHub Repository</a></p>
+            <p><a href="https://github.com/Naveen-Pal/timetable_2024-25" target="_blank" rel="noopener"><i class="fa fa-github" aria-hidden="true"></i> GitHub Repository</a></p>
         </div>
         <div class="footer-section">
-            <p>Contact Me: <i class="fa fa-envelope" aria-hidden="true"></i> 23110216@iitgn.ac.in</p>
+            <p><i class="fa fa-envelope" aria-hidden="true"></i> 23110216@iitgn.ac.in</p>
         </div>
         <div class="footer-section">
-            <p>Made with ❤️ by x0 (System club)</p>
+            <p>Made with <i class="fa fa-heart" aria-hidden="true"></i></p>
         </div>
     </footer>
 
@@ -92,6 +101,14 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
     
     <script src="/static/js/timetable.js"></script>
+    <script>
+        document.getElementById('go-to-top').addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
 </body>
 
 </html>

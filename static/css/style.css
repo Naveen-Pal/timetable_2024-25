@@ -4,25 +4,42 @@ body {
     text-align: center;
     background-color: #f4f4f9;
     color: #333;
+    padding-bottom: 80px; /* Add padding to account for sticky controls */
+    scroll-behavior: smooth; /* Smooth scrolling for the whole page */
+    overflow-x: hidden; /* Prevent horizontal scrolling */
 }
 
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 15px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 header {
-    background-color: #0066cc;
+    background: linear-gradient(135deg, #0066cc, #004080);
     color: white;
-    padding: 1rem 0;
+    padding: 1.2rem 0;
     margin-bottom: 1.5rem;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    position: relative;
 }
 
 header h1 {
     margin: 0;
     font-size: 1.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.header-subtitle {
+    margin: 5px 0 0 0;
+    font-size: 1rem;
+    opacity: 0.9;
+    font-weight: 300;
 }
 
 .pre_image {
@@ -41,13 +58,16 @@ header h1 {
     font-family: 'Times New Roman', Times, serif;
     margin-bottom: 20px;
     overflow-x: auto;
+    -webkit-overflow-scrolling: touch; /* Better scrolling on iOS */
     max-width: 100%;
+    box-sizing: border-box;
 }
 
 .timetable {
     width: 100%;
     border-collapse: collapse;
     font-size: 0.9rem;
+    min-width: 600px; /* Ensure minimum width for content */
 }
 
 .timetable th,
@@ -83,7 +103,7 @@ header h1 {
 }
 
 .timetable td.clash {
-    background-color: #ff3737;
+    background-color: #ff9696;
 }
 
 .course-cell {
@@ -162,48 +182,173 @@ header h1 {
     padding: 5px 0;
 }
 
+/* Card styling for consistent UI elements */
+.card {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    margin: 20px 0;
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
+}
+
+/* Enhanced controls styling */
 .controls {
     display: flex;
-    flex-direction: column;
     margin-top: 30px;
     padding: 15px;
     border-radius: 8px;
     background-color: white;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    /* Ensure it's not blocking content */
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.15);
     position: relative;
     z-index: 10;
     pointer-events: auto;
+    transition: all 0.3s ease;
 }
 
+/* Simplified sticky controls */
 .sticky-controls {
     position: fixed;
-    bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%);
+    bottom: 0;
+    left: 0;
+    right: 0;
     z-index: 100;
-    margin-bottom: 20px;
-    width: auto;
-    min-width: 300px;
-    max-width: 90%;
+    /* margin: 0; */
+    /* width: 100%; */
+    border-radius: 0;
+    padding: 10px 20px;
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(5px);
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+    width: 100%;
+    flex-wrap: nowrap;
+}
+
+/* Left controls container with credit counter and go to top */
+.left-controls {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.buttons-container {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    margin: 0;
+}
+
+/* Credit counter styling */
+.credits-counter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #0066cc;
+    color: white;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 14px;
+    gap: 5px;
+    font-weight: bold;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.credits-counter span {
+    font-size: 16px;
+}
+
+/* Simplified button styling */
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    gap: 8px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.primary-btn {
+    background-color: #0066cc;
+    color: white;
+}
+
+.primary-btn:hover {
+    background-color: #0056b3;
+}
+
+.secondary-btn {
+    background-color: #dc3545;
+    color: white;
+}
+
+.secondary-btn:hover {
+    background-color: #c82333;
+}
+
+/* Go to top button styling */
+.goto-top-btn {
+    background-color: #6c757d;
+    color: white;
+    padding: 5px 12px;
+}
+
+.goto-top-btn:hover {
+    background-color: #5a6268;
+}
+
+/* Remove back-to-top button since we now have it in the sticky bar */
+.back-to-top {
+    display: none !important;
+}
+
+/* Search styling */
+.search-container {
+    position: relative;
+    margin: 20px auto;
+    max-width: 100%;
+    width: 600px;
+    box-sizing: border-box;
+}
+
+.search-icon {
+    position: absolute;
+    left: 15px;
+    top: 35%;
+    transform: translateY(-50%);
+    color: #666;
 }
 
 #search-field {
-    width: 90%;
-    padding: 12px;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px 12px 12px 40px;
     font-size: 16px;
     border: 1px solid #ddd;
-    border-radius: 5px;
+    border-radius: 25px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
     transition: all 0.3s ease;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
+    max-width: 100%;
 }
 
 #search-field:focus {
     outline: none;
     border: 1px solid #0066cc;
-    box-shadow: 0 2px 8px rgba(0, 102, 204, 0.2);
-    border-radius: 5px;
+    box-shadow: 0 2px 12px rgba(0, 102, 204, 0.15);
 }
 
 .loader {
@@ -227,8 +372,13 @@ header h1 {
 }
 
 .courses-heading {
-    margin: 30px 20px 15px;
+    margin: 30px 0 15px;
     color: #0066cc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 1.3rem;
 }
 
 .courses-table {
@@ -239,6 +389,9 @@ header h1 {
     position: relative;
     z-index: 5;
     pointer-events: auto;
+    table-layout: fixed;
+    overflow-x: auto;
+    display: block;
 }
 
 .courses-table th,
@@ -283,84 +436,77 @@ header h1 {
     z-index: 7;
 }
 
+/* Responsive columns for courses table */
+.courses-table th:nth-child(1), 
+.courses-table td:nth-child(1) {
+    width: 20%;
+}
+
+.courses-table th:nth-child(2), 
+.courses-table td:nth-child(2) {
+    width: 60%;
+}
+
+.courses-table th:nth-child(3), 
+.courses-table td:nth-child(3),
+.courses-table th:nth-child(4), 
+.courses-table td:nth-child(4) {
+    width: 10%;
+}
+
+/* Enhanced download options */
 .download-options {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 20px 0;
+    margin: 15px 0;
     background-color: white;
     padding: 15px;
     border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    width: 100%;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    /* width: 100%; */
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    transition: all 0.3s ease;
 }
 
 .download-options h3 {
-    color: #333;
-    margin-bottom: 15px;
-}
-
-.option-buttons {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
-    margin-top: 10px;
-}
-
-button {
-    padding: 12px 24px;
+    color: #0066cc;
+    margin: 0 0 10px 0;
     font-size: 16px;
-    cursor: pointer;
-    border: none;
-    border-radius: 5px;
-    margin: 5px;
-    transition: all 0.3s ease;
     display: flex;
     align-items: center;
     gap: 8px;
 }
 
-.primary-btn {
-    background-color: #0066cc;
-    color: white;
-}
-
-.primary-btn:hover {
-    background-color: #0056b3;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.secondary-btn {
-    background-color: #dc3545;
-    color: white;
-}
-
-.secondary-btn:hover {
-    background-color: #c82333;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+.option-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+    flex-wrap: wrap;
 }
 
 .option-button {
     display: flex;
     align-items: center;
-    gap: 5px;
+    justify-content: center;
+    gap: 8px;
     padding: 10px 15px;
     border: none;
-    border-radius: 4px;
-    background-color: #f0f0f0;
-    color: #333;
+    border-radius: 25px;
     cursor: pointer;
-    transition: all 0.2s ease;
-    font-size: 14px;
+    transition: all 0.3s ease;
+    font-size: 15px;
+    font-weight: 500;
+    width: auto;
+    min-width: 80px;
 }
 
 .option-button:hover {
-    background-color: #e0e0e0;
-    transform: translateY(-2px);
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 .option-button.image {
@@ -368,9 +514,17 @@ button {
     color: white;
 }
 
+.option-button.image:hover {
+    background-color: #218838;
+}
+
 .option-button.excel {
     background-color: #217346;
     color: white;
+}
+
+.option-button.excel:hover {
+    background-color: #1a5c38;
 }
 
 .option-button.csv {
@@ -378,12 +532,8 @@ button {
     color: white;
 }
 
-.buttons-container {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin: 5px 0;
+.option-button.csv:hover {
+    background-color: #e08e1c;
 }
 
 .message-box {
@@ -433,113 +583,207 @@ footer {
     text-decoration: underline;
 }
 
-.credits-counter {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 15px 0;
-    font-size: 1.1rem;
-    background-color: white;
-    padding: 10px;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-.credits-counter span {
-    font-weight: bold;
-    margin-left: 5px;
-    color: #0066cc;
-}
-
 /* Responsive design improvements */
 @media (max-width: 768px) {
-    .controls {
-        flex-direction: column;
+    .btn-text {
+        display: none;
     }
     
-    .option-buttons {
-        flex-direction: column;
-        width: 100%;
-    }
-    
-    .option-button {
-        width: 100%;
+    button {
+        padding: 12px;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
         justify-content: center;
     }
     
-    .download-options {
-        width: 90%;
-        margin: 15px auto;
+    .sticky-controls {
+        padding: 10px;
     }
     
-    .timetable th,
-    .timetable td {
-        padding: 2px 4px;
-        font-size: 0.75rem;
+    .left-controls {
+        gap: 10px;
+    }
+    
+    .buttons-container {
+        gap: 10px;
+    }
+    
+    .credits-counter {
+        padding: 4px 8px;
+        font-size: 12px;
+    }
+    
+    .credits-counter span {
+        font-size: 14px;
     }
     
     header h1 {
         font-size: 1.5rem;
     }
     
-    .courses-table th,
+    .header-subtitle {
+        font-size: 0.9rem;
+    }
+    
+    .container {
+        padding: 0 10px;
+    }
+    
+    .courses-table {
+        font-size: 14px;
+    }
+    
+    .courses-table th, 
     .courses-table td {
-        padding: 6px;
-        font-size: 0.8rem;
+        padding: 8px 5px;
     }
     
-    .timetable {
-        font-size: 0.75rem;
+    /* Fix columns for mobile */
+    .courses-table th:nth-child(1), 
+    .courses-table td:nth-child(1) {
+        width: 25%;
     }
     
-    .course-cell {
-        min-height: 35px;
-        padding: 2px;
+    .courses-table th:nth-child(2), 
+    .courses-table td:nth-child(2) {
+        width: 45%;
     }
     
-    /* Responsive preview: show only essential info on small screens */
-    .course-location {
-        display: none;
+    .courses-table th:nth-child(3), 
+    .courses-table td:nth-child(3),
+    .courses-table th:nth-child(4), 
+    .courses-table td:nth-child(4) {
+        width: 15%;
     }
     
-    /* Abbreviate day names on small screens */
-    .timetable th.day-header {
-        font-size: 0.7rem;
+    /* Fix download options buttons */
+    .option-buttons {
+        flex-wrap: wrap;
+    }
+    
+    .option-button {
+        flex: 1 1 auto;
+        min-width: 80px;
     }
 }
 
 @media (max-width: 480px) {
-    .timetable th,
-    .timetable td {
-        padding: 1px 2px;
-        font-size: 0.65rem;
+    .sticky-controls {
+        padding: 8px 10px;
     }
     
-    .course-cell {
-        min-height: 25px;
+    button {
+        width: 36px;
+        height: 36px;
+        padding: 8px;
     }
     
-    /* For very small screens, keep just code and type */
-    .course-name {
-        display: none;
+    .left-controls {
+        gap: 6px;
     }
     
-    /* Show only first letter of day names on very small screens */
-    .timetable th.day-header {
-        font-size: 0.65rem;
+    .buttons-container {
+        gap: 6px;
     }
     
-    .timetable th.day-header span.day-full {
-        display: none;
+    header h1 {
+        font-size: 1.3rem;
     }
     
-    .timetable th.day-header span.day-abbr {
-        display: inline;
+    .header-subtitle {
+        font-size: 0.8rem;
+    }
+    
+    .container {
+        padding: 0 8px;
+    }
+    
+    /* Stack the courses table columns more efficiently */
+    .courses-table th, 
+    .courses-table td {
+        padding: 6px 4px;
+        font-size: 12px;
+    }
+    
+    /* Further optimize column widths */
+    .courses-table th:nth-child(1), 
+    .courses-table td:nth-child(1) {
+        width: 30%;
+    }
+    
+    .courses-table th:nth-child(2), 
+    .courses-table td:nth-child(2) {
+        width: 40%;
+    }
+    
+    .courses-table th:nth-child(3), 
+    .courses-table td:nth-child(3),
+    .courses-table th:nth-child(4), 
+    .courses-table td:nth-child(4) {
+        width: 15%;
+    }
+    
+    .courses-heading {
+        font-size: 1.1rem;
+    }
+    
+    /* Fix footer on small screens */
+    footer {
+        flex-direction: column;
+        padding: 15px 0;
+    }
+    
+    .footer-section {
+        margin: 5px 0;
+    }
+    
+    /* More compact sticky controls */
+    .sticky-controls {
+        padding: 6px 8px;
+    }
+}
+
+@media (max-width: 360px) {
+    button {
+        width: 32px;
+        height: 32px;
+        padding: 6px;
+    }
+    
+    .sticky-controls {
+        padding: 6px 5px;
+    }
+    
+    .left-controls {
+        gap: 5px;
+    }
+    
+    .buttons-container {
+        gap: 5px;
+    }
+    
+    .credits-counter {
+        padding: 3px 6px;
+        font-size: 11px;
+    }
+    
+    .credits-counter span {
+        font-size: 12px;
+    }
+    
+    /* Make courses table more compact */
+    .courses-table th, 
+    .courses-table td {
+        padding: 5px 2px;
+        font-size: 11px;
     }
 }
 
 @media print {
-    header, .controls, .download-options, footer, button, #search-field {
+    header, .controls, .download-options, footer, button, #search-field, .sticky-controls, .back-to-top {
         display: none !important;
     }
     
