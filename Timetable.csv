@@ -17,7 +17,11 @@ Manasi Kanetkar(I+L)",,384,,"C1
 ES 118,Materials for the Future,1.5,0,1.5,3,Superb Misra(I+L),,387,,"G1
  (Jasubhai Auditorium)",,"I1,J1,I2,K2,J2,P2
  (MSE Lab)",,,,,
-HS 191,Introduction to Writing - 1,1,3,0,2,Jooyoung Kim(I+T),,384,,,,"H1,H2 (7/101,7/102,7/103,7/104,7/105,7/106,7/107,7/201,7/202,7/203,7/204,7/205)",To be announced in mid July,,,,
+HS 191,Introduction to Writing - 1,1,3,0,2,Jooyoung Kim(I+T),,384,,,,"H1,H2 (7/101,7/102,7/103,7/104,7/105,7/205)
+B1,B2
+(7/106,7/107,7/201)
+I1,I2
+(7/202,7/203,7/204)",To be announced in mid July,,,,
 BS 192,Undergraduate Science Laboratory,0,0,3,3,"Naveen Sisodia(L), Krista Khiangte(L), Priyabrata Ghana(L), Partha Pratim Roy(L)",,,,,,"I1,K1,J1,L1,I2,M1,K2,L2,J2,M2
  (PH Lab)",,,,,
 HS 201,World Civilizations and Cultures,3,0,0,4,"Madhumita Sengupta(I),Sharada Channarayapatna(I),V N Prabhakar(I)",,408,,"D1,D2
@@ -163,7 +167,7 @@ CS 202,Software Tools and Techniques for CSE,1.5,0,3,4,Shouvick Mondal(I+L),,100
 (10/104,10/105)",Course Plan,,,,
 CS 330,Operating Systems,3,0,1.5,4,Abhishek Bichawat(I+L),,130,,"F1,F2
 (10/201)","L1
-(10/203,10/204,10/201)",,,,,,
+(10/203,10/204,10/201)",,Course Plan,,,,
 CS 331,Computer Networks,3,1,0,4,Sameer Kulkarni(I+T),,100,,"G1,G2
 (10/103)","H2
 (Surendra C Sheth Learning Theatre)",,Course Plan,,,,
@@ -492,8 +496,8 @@ MA 634,Algebraic Number Theory,3,0,0,4,Indranath Sengupta(I),,19,,"D1,D2
  (11/206)",,,,,,,BS
 MA 640,Integral Geometry in Imaging Sciences,3,0,0,4,Rohit Kumar Mishra(I),,40,,"L1,L2
  (7/210)",,,Course Plan,,,,BS
-MA 643,Numerical Analysis for Partial Differential Equations,3,0,0,4,Abhinav Jha(I),,,,"I1,I2
- (13/125)",,,Course Plan,,,,BS
+MA 643,Numerical Analysis for Partial Differential Equations,3,0,0,4,Abhinav Jha(I),,,,"M1,M2
+ (7/205)",,,Course Plan,,,,BS
 ES 645,Optimization methods for machine learning,3,0,0,4,Madhu Gupta(I),,40,,"J1,J2
  (7/104)",,,,,,,
 ,,,,,,,,,,,,,,,,,

@@ -5,7 +5,10 @@ Calculus of Single Variable and Linear Algebra,MA 103,"E1,E2",A1,,4.0,Jasubhai A
 Computing,ES 112,F1,,"P1,P2",3.0,Jasubhai Auditorium,,
 "Design, Innovation, and Prototyping",ES 115,C1,,"I1,K1,J1,L1,I2,M1,K2,L2,J2,M2",5.0,Jasubhai Auditorium,,
 Materials for the Future,ES 118,G1,,"I1,J1,I2,K2,J2,P2",3.0,Jasubhai Auditorium,,MSE Lab
-Introduction to Writing - 1,HS 191,,,"H1,H2",2.0,,,
+Introduction to Writing - 1,HS 191,,,"H1,H2 
+B1,B2
+
+I1,I2",2.0,,,"7/106,7/107,7/201, 7/202,7/203,7/204"
 Undergraduate Science Laboratory,BS 192,,,"I1,K1,J1,L1,I2,M1,K2,L2,J2,M2",3.0,,,PH Lab
 World Civilizations and Cultures,HS 201,"D1,D2",,,4.0,,,
 Physical Education,PE 101,,,,0.0,,,
@@ -170,7 +173,7 @@ Algebraic Topology,MA 627,"M1,M2",,,4.0,7/106,,
 Measure Theory & Probability,MA 630 (A),"N1,N2",P1,,4.0,7/107,7/107,
 Algebraic Number Theory,MA 634,"D1,D2",,,4.0,11/206,,
 Integral Geometry in Imaging Sciences,MA 640,"L1,L2",,,4.0,7/210,,
-Numerical Analysis for Partial Differential Equations,MA 643,"I1,I2",,,4.0,13/125,,
+Numerical Analysis for Partial Differential Equations,MA 643,"M1,M2",,,4.0,7/205,,
 Optimization methods for machine learning,ES 645,"J1,J2",,,4.0,7/104,,
 Mathematical Methods of Physics I,PH 502,"G1,G2",K1,,4.0,11/102,11/101,
 Quantum Mechanics I,PH 503,"E1,E2",K2,,4.0,11/102,11/101,
