@@ -1,2 +1,4 @@
 generated_images
-venv/
+.venv/
+token.pickle
+.env
