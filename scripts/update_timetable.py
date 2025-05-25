@@ -17,6 +17,10 @@ SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly']
 def restore_token_from_env():
     b64_token = os.environ.get('GOOGLE_TOKEN_B64')
     if b64_token:
+        # Add padding if necessary
+        padding = 4 - (len(b64_token) % 4)
+        if padding != 4:
+            b64_token += '=' * padding
         with open('token.pickle', 'wb') as f:
             f.write(base64.b64decode(b64_token))
 
