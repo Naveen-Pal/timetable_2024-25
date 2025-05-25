@@ -9,6 +9,10 @@ jobs:
   update-timetable:
     runs-on: ubuntu-latest
     
+    env:
+        SPREADSHEET_ID: ${{ vars.SPREADSHEET_ID }}
+        SHEET_NAME: ${{ vars.SHEET_NAME }}
+        GOOGLE_TOKEN_B64: ${{ secrets.GOOGLE_TOKEN_B64 }}
     steps:
     - uses: actions/checkout@v4
       with:
@@ -24,21 +28,10 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r scripts/requirements.txt
     
-    - name: Create Google Auth credentials
-      run: |
-        echo "${{ secrets.GOOGLE_CREDENTIALS }}" > credentials.json
-    
     - name: Update timetable data
-      env:
-        SPREADSHEET_ID: ${{ vars.SPREADSHEET_ID }}
-        SHEET_NAME: ${{ vars.SHEET_NAME }}
       run: |
         python scripts/update_timetable.py
-    
-    - name: Cleanup credentials
-      if: always()
-      run: |
-          rm -f credentials.json
+        python csv-filter.py
 
     - name: Commit and push if changed
       run: |
