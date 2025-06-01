@@ -1,5 +1,5 @@
-Flask==2.3.3
+Flask
 Werkzeug
-pandas==2.0.3
+pandas
 gunicorn
-flask-cors==4.0.0
+flask-cors
