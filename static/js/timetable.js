@@ -16,7 +16,9 @@ document.addEventListener('DOMContentLoaded', function() {
         downloadCSV: document.getElementById('download-csv'),
         totalCreditsElement: document.getElementById('total-credits'),
         errorBox: document.getElementById('error-box'),
-        successBox: document.getElementById('success-box')
+        successBox: document.getElementById('success-box'),
+        selectedCoursesContainer: document.getElementById('selected-courses-container'),
+        selectedCoursesList: document.getElementById('selected-courses-list')
     };
     
     // Load courses
@@ -48,6 +50,7 @@ document.addEventListener('DOMContentLoaded', function() {
         renderCourseTable(courseData, elements.searchField.value.toLowerCase());
         elements.timetableContainer.innerHTML = '';
         elements.downloadOptions.style.display = 'none';
+        elements.selectedCoursesContainer.style.display = 'none';
         showSuccess('All courses have been deselected.');
     });
     
@@ -121,6 +124,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                 }
                 updateTotalCredits();
+                // displaySelectedCourses();
             });
             
             tbody.appendChild(row);
@@ -131,7 +135,62 @@ document.addEventListener('DOMContentLoaded', function() {
         elements.totalCreditsElement.textContent = totalCredits;
     }
     
+    function displaySelectedCourses() {
+        if (selectedCourses.length === 0) {
+            elements.selectedCoursesContainer.style.display = 'none';
+            return;
+        }
+        
+        elements.selectedCoursesList.innerHTML = '';
+        
+        selectedCourses.forEach(courseCode => {
+            const course = courseData.find(c => c.code === courseCode);
+            if (course) {
+                const courseItem = document.createElement('div');
+                courseItem.className = 'selected-course-item';
+                courseItem.innerHTML = `
+                    <span class="selected-course-code">${course.code}</span>
+                    <span class="selected-course-name">${course.name}</span>
+                    <span class="selected-course-credits">${course.credits}C</span>
+                    <button class="remove-course-btn" data-course-code="${course.code}" data-credits="${course.credits}" title="Remove course">
+                        <i class="fa fa-times" aria-hidden="true"></i>
+                    </button>
+                `;
+                
+                // Add event listener for the remove button
+                const removeBtn = courseItem.querySelector('.remove-course-btn');
+                removeBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const courseCodeToRemove = this.dataset.courseCode;
+                    const creditsToRemove = parseInt(this.dataset.credits);
+                    
+                    // Remove from selectedCourses array
+                    const index = selectedCourses.indexOf(courseCodeToRemove);
+                    if (index > -1) {
+                        selectedCourses.splice(index, 1);
+                        totalCredits -= creditsToRemove;
+                        updateTotalCredits();
+                        
+                        // Update the course table to reflect the change
+                        renderCourseTable(courseData, elements.searchField.value.toLowerCase());
+                        
+                        // Update the selected courses display
+                        displaySelectedCourses();
+                        
+                        showSuccess(`${courseCodeToRemove} has been removed from your selection.`);
+                    }
+                });
+                
+                elements.selectedCoursesList.appendChild(courseItem);
+            }
+        });
+        
+        elements.selectedCoursesContainer.style.display = 'block';
+        elements.selectedCoursesContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+    
     function generateTimetable() {
+        displaySelectedCourses();
         elements.timetableContainer.innerHTML = '<div class="loader" style="display:block;"></div>';
         
         fetch('/api/timetable', {

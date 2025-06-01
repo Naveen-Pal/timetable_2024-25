@@ -196,6 +196,98 @@ header h1 {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
 }
 
+/* Selected Courses Styling */
+.selected-courses-container {
+    background-color: #f0f7ff;
+    border: 2px solid #0066cc;
+    border-radius: 8px;
+    padding: 15px;
+    margin: 20px 0;
+    box-shadow: 0 2px 8px rgba(0, 102, 204, 0.1);
+}
+
+.selected-courses-heading {
+    color: #0066cc;
+    margin: 0 0 15px 0;
+    text-align: left;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+}
+
+.selected-courses-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: flex-start;
+}
+
+.selected-course-item {
+    background-color: #0066cc;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 102, 204, 0.2);
+}
+
+.selected-course-item:hover {
+    background-color: #0056b3;
+    transform: translateY(-1px);
+    /* Q1RGezEwMGtfZCQkcF9pbl9jMGRlfQ== */
+    box-shadow: 0 4px 8px rgba(0, 102, 204, 0.3);
+}
+
+.selected-course-code {
+    font-weight: bold;
+    font-family: monospace;
+}
+
+.selected-course-name {
+    font-size: 0.85rem;
+    opacity: 0.95;
+}
+
+.selected-course-credits {
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 2px 6px;
+    border-radius: 10px;
+    font-size: 0.8rem;
+    margin-left: auto;
+}
+
+/* Remove course button styling */
+.remove-course-btn {
+    background: none;
+    border: none;
+    color: white;
+    padding: 2px 4px;
+    margin-left: 6px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    font-size: 0.8rem;
+    width: 18px;
+    height: 18px;
+    opacity: 0.8;
+}
+
+.remove-course-btn:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    opacity: 1;
+    transform: scale(1.1);
+}
+
 /* Enhanced controls styling */
 .controls {
     display: flex;
