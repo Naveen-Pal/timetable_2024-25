@@ -269,7 +269,8 @@ document.addEventListener('DOMContentLoaded', function() {
         sortedTimeSlots.forEach(timeSlot => {
             const row = [timeSlot];
             dayNames.forEach(day => {
-                const course = timetableData[day].find(entry => entry.time === timeSlot);
+                const dayData = timetableData[day] || [];
+                const course = dayData.find(entry => entry.time === timeSlot);
                 row.push(course ? course.class : '');
             });
             excelData.push(row);
@@ -301,7 +302,8 @@ document.addEventListener('DOMContentLoaded', function() {
         sortedTimeSlots.forEach(timeSlot => {
             const row = [timeSlot];
             dayNames.forEach(day => {
-                const course = timetableData[day].find(entry => entry.time === timeSlot);
+                const dayData = timetableData[day] || [];
+                const course = dayData.find(entry => entry.time === timeSlot);
                 const courseInfo = course ? course.class : '';
                 row.push(courseInfo.includes(',') ? `"${courseInfo}"` : courseInfo);
             });
