@@ -12,7 +12,7 @@ This is a web-based timetable application that allows users to view and filter p
 ## Project Structure
 
 - `app.py`: Main Flask application
-- `csv-filter.py`: Script for filtering CSV files
+- `scripts/csv-filter.py`: Script for filtering CSV files
 - `static/`: Static assets (CSS, JS, images)
 - `templates/`: HTML templates
 - `requirements.txt`: Python dependencies

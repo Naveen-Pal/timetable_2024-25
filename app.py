@@ -1,128 +1,107 @@
-from flask import Flask, render_template, request, session, jsonify
+from flask import Flask, render_template, request, jsonify
+from flask_cors import CORS
 import pandas as pd
 import os
 import uuid
-import logging
-import traceback
-
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-    handlers=[logging.StreamHandler()]
-)
-logger = logging.getLogger(__name__)
+import re
 
 app = Flask(__name__, template_folder='templates')
 app.secret_key = os.urandom(24)
 
-output_dir = 'generated_images'
-os.makedirs(output_dir, exist_ok=True)
+# Enable CORS for all routes and origins
+CORS(app, origins="*", methods=["GET", "POST"])
 
+# Load data
 try:
     time_slots = pd.read_csv('Time Slots.csv')
-    timetable_data = pd.read_csv('Updated_Processed_Timetable.csv')    
-    logger.info("Timetable data loaded successfully")
-except Exception as e:
-    logger.error(f"Error loading data: {e}")
-    timetable_data = pd.DataFrame()
+    timetable_data = pd.read_csv('Updated_Processed_Timetable.csv')
+    time_labels = pd.read_csv('Time Slots.csv').iloc[:, 0].tolist()
+except Exception:
     time_slots = pd.DataFrame()
+    timetable_data = pd.DataFrame()
+    time_labels = []
 
-@app.route('/api/courses', methods=['GET'])
+@app.route('/')
+def index():
+    return render_template('index.html', session_id=str(uuid.uuid4()))
+
+@app.route('/api/courses')
 def get_courses():
     try:
         courses = [
             {
                 'code': row['Course Code'], 
                 'name': row['Course Name'], 
-                'credits': row['Credit'],
-                'lecture': str(row.get('Lecture Time', '')),
-                'tutorial': str(row.get('Tutorial Time', '')),
-                'lab': str(row.get('Lab Time', '')),
-                'lecture_location': str(row.get('Lecture Location', '')),
-                'tutorial_location': str(row.get('Tutorial Location', '')),
-                'lab_location': str(row.get('Lab Location', ''))
+                'credits': row['Credit']
             } 
             for _, row in timetable_data.iterrows() 
             if not pd.isna(row['Credit'])
         ]
         
-        time_slots_csv = pd.read_csv('Time Slots.csv')
-        
-        days = list(time_slots.columns)
-        slots = []
-        for idx, row in time_slots.iterrows():
-            slot_data = {}
-            for day in days:
-                slot_data[day] = row[day]
-            slots.append(slot_data)
-            
-        time_slots_column = time_slots_csv.iloc[:, 0].tolist()
-        
         return jsonify({
             "courses": courses,
-            "days": days,
-            "slots": slots,
-            "timeLabels": time_slots_column
+            "days": list(time_slots.columns) if not time_slots.empty else [],
+            "timeLabels": time_labels
         })
+    except Exception as e:
+        return jsonify({"error": f"Failed to load courses: {str(e)}"}), 500
+
+@app.route('/api/timetable', methods=['POST'])
+def get_timetable():
+    try:
+        selected_courses = request.json.get('courses', []) if request.json else []
+        if not selected_courses:
+            return jsonify({"error": "No courses selected"}), 400
         
+        # Create timetable structure
+        timetable = create_timetable(selected_courses)
+        clean_timetable = {}
+        days = [col for col in timetable.columns if col != 'Time Slot']
+        
+        # Initialize days
+        for day in days:
+            clean_timetable[day.lower()] = []
+        
+        # Process each time slot
+        for idx, row in timetable.iterrows():
+            time_slot = time_labels[idx] if idx < len(time_labels) else f"Slot {idx + 1}"
+            
+            for day in days:
+                content = str(row[day]) if pd.notna(row[day]) else ""
+                clean_info = clean_course_info(content)
+                
+                if clean_info:
+                    clean_timetable[day.lower()].append({
+                        "time": time_slot,
+                        "class": clean_info
+                    })
+        
+        # Remove empty days
+        return jsonify({day: classes for day, classes in clean_timetable.items() if classes})
     except Exception as e:
-        logger.error(f"Error in get_courses: {e}")
-        logger.error(traceback.format_exc())
-        return jsonify({"error": str(e)}), 500
+        return jsonify({"error": f"Failed to generate timetable: {str(e)}"}), 500
 
-@app.route('/', methods=['GET'])
-def index():
-    try:
-        session_id = session.get('session_id')
-        if not session_id:
-            session_id = str(uuid.uuid4())
-            session['session_id'] = session_id
-            
-        return render_template('index.html', session_id=session_id)
-    except Exception as e:
-        logger.error(f"Error in index route: {e}")
-        logger.error(traceback.format_exc())
-        return render_template('error.html', error="Failed to load timetable data")
+def clean_course_info(content):
+    """Clean and format course information"""
+    if not content or content.strip() in ['', 'nan'] or re.match(r'^[A-Z]\d+$', content.strip()):
+        return None
+    
+    if content.strip() in ['T1', 'T2', 'T3', 'O1', 'O2']:
+        return None
+    
+    # Remove brackets and clean content
+    content = re.sub(r'\([^)]*\)', '', content).replace('\n', ', ')
+    parts = [part.strip() for part in content.split(',') if part.strip()]
+    clean_parts = [part for part in parts if not re.match(r'^[A-Z]\d+$', part) and part]
+    
+    return ', '.join(clean_parts) if clean_parts else None
 
-
-@app.route('/api/timetable/text', methods=['POST'])
-def get_timetable_text():
-    try:
-        selected_courses = request.json.get('courses')
-        if not selected_courses or not isinstance(selected_courses, list):
-            return jsonify({"error": "No courses selected or invalid format"}), 400
-            
-        try:
-            personalized_timetable = create_timetable_data(selected_courses)
-            
-            text_data = []
-            
-            # Use only the columns of the personalized timetable (time slots are already included)
-            header = list(personalized_timetable.columns)
-            text_data.append("\t".join(header))
-            
-            for _, row in personalized_timetable.iterrows():
-                # Directly use the row values without adding time slots again
-                text_row = [str(cell).replace('\n', ',') for cell in row]
-                text_data.append("\t".join(text_row))
-            return jsonify({"text": "\n".join(text_data)})
-            
-        except Exception as e:
-            logger.error(f"Error creating text timetable: {e}")
-            logger.error(traceback.format_exc())
-            return jsonify({"error": "Failed to generate text timetable"}), 500
-            
-    except Exception as e:
-        logger.error(f"Error in get_timetable_text: {e}")
-        logger.error(traceback.format_exc())
-        return jsonify({"error": str(e)}), 500
-
-def create_timetable_data(selected_courses):
-    """Common function to create the timetable data structure"""
-    course_slots = {}
+def create_timetable(selected_courses):
+    """Create timetable data structure"""
+    course_info = {}
     for _, row in timetable_data.iterrows():
         if row['Course Code'] in selected_courses:
-            course_slots[row['Course Code']] = {
+            course_info[row['Course Code']] = {
                 'name': row['Course Name'],
                 'Lecture': str(row.get('Lecture Time', '')),
                 'Tutorial': str(row.get('Tutorial Time', '')),
@@ -132,47 +111,29 @@ def create_timetable_data(selected_courses):
                 'Lab_Location': str(row.get('Lab Location', ''))
             }
 
-    # Create a copy of the time slots dataframe without the index column
-    personalized_timetable = time_slots.copy()
-    # Ensure there's no index column in the output
-    personalized_timetable.reset_index(drop=True, inplace=True)
-    overlaps = {}
-
-    for slot in personalized_timetable.index:
-        for day in personalized_timetable.columns:
+    timetable = time_slots.copy().reset_index(drop=True)
+    
+    for slot in timetable.index:
+        for day in timetable.columns:
             entries = []
-            for code, info in course_slots.items():
+            for code, info in course_info.items():
                 for session_type in ['Lecture', 'Tutorial', 'Lab']:
-                    times = info.get(session_type)
+                    times = info.get(session_type, '')
                     if pd.isna(times) or times == 'nan':
                         continue
                         
-                    if personalized_timetable.at[slot, day] in [time.strip() for time in times.split(',') if time.strip()]:
+                    if timetable.at[slot, day] in [t.strip() for t in times.split(',') if t.strip()]:
                         location = info.get(f"{session_type}_Location", "")
                         location_text = f"\n{location}" if location and location != "nan" else ""
                         entries.append(f"{code}\n{info['name']}\n{session_type}{location_text}")
 
             if len(entries) > 1:
-                overlaps[f"{slot} {day}"] = entries
-                display = ""
-                for ent in entries:
-                    # Show full course code in clashes too
-                    display += ent.split("\n")[0].strip() + "/ "
-                
-                display = display[:-2] + "\n(Clash)"
-                personalized_timetable.at[slot, day] = display
+                display = "/ ".join([e.split("\n")[0].strip() for e in entries]) + "\n(Clash)"
+                timetable.at[slot, day] = display
             elif entries:
-                personalized_timetable.at[slot, day] = entries[0]
+                timetable.at[slot, day] = entries[0]
     
-    return personalized_timetable
-
-@app.errorhandler(404)
-def page_not_found(e):
-    return jsonify({"error": "Not found"}), 404
-
-@app.errorhandler(500)
-def server_error(e):
-    return jsonify({"error": "Internal server error"}), 500
+    return timetable
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=False)
