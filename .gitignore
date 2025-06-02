@@ -1,3 +1,17 @@
 .venv/
 token.pickle
 .env
+
+# Testing
+.pytest_cache/
+
+# Python artifacts
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# IDE and OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

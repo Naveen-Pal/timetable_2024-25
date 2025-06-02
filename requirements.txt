@@ -3,3 +3,5 @@ Werkzeug
 pandas
 gunicorn
 flask-cors
+pytest>=7.0.0
+pytest-flask>=1.2.0
