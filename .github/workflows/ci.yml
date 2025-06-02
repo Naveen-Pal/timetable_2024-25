@@ -60,8 +60,8 @@ jobs:
     - name: Build and test Docker
       run: |
         docker build -t timetable-app .
-        docker run -d -p 5000:5000 --name test-container timetable-app
+        docker run -d -p 80:80 --name test-container timetable-app
         sleep 10
-        curl -f http://localhost:5000 || exit 1
+        curl -f http://localhost:80 || exit 1
         docker stop test-container
         docker rm test-container 
