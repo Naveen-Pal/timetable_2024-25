@@ -90,7 +90,8 @@ def clean_course_info(content):
         return None
     
     # Remove brackets and clean content
-    content = re.sub(r'\([^)]*\)', '', content).replace('\n', ', ')
+    content = re.sub(r'\([^)]*\)', '', content).replace(',', ' ')
+    content = content.replace('\n', ', ')
     parts = [part.strip() for part in content.split(',') if part.strip()]
     clean_parts = [part for part in parts if not re.match(r'^[A-Z]\d+$', part) and part]
     

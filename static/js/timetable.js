@@ -4,97 +4,72 @@ document.addEventListener('DOMContentLoaded', function() {
     let totalCredits = 0;
     let timetableData = null;
     
+    // DOM elements
+    const $ = id => document.getElementById(id);
     const elements = {
-        searchField: document.getElementById('search-field'),
-        courseTableBody: document.getElementById('course-table-body'),
-        previewButton: document.getElementById('preview-button'),
-        deselectAllButton: document.getElementById('deselect-all'),
-        timetableContainer: document.getElementById('timetable-container'),
-        downloadOptions: document.getElementById('download-options'),
-        downloadImage: document.getElementById('download-image'),
-        downloadExcel: document.getElementById('download-excel'),
-        downloadCSV: document.getElementById('download-csv'),
-        totalCreditsElement: document.getElementById('total-credits'),
-        errorBox: document.getElementById('error-box'),
-        successBox: document.getElementById('success-box'),
-        selectedCoursesContainer: document.getElementById('selected-courses-container'),
-        selectedCoursesList: document.getElementById('selected-courses-list')
+        searchField: $('search-field'),
+        courseTableBody: $('course-table-body'),
+        previewButton: $('preview-button'),
+        deselectAllButton: $('deselect-all'),
+        timetableContainer: $('timetable-container'),
+        downloadOptions: $('download-options'),
+        downloadImage: $('download-image'),
+        downloadExcel: $('download-excel'),
+        downloadCSV: $('download-csv'),
+        totalCreditsElement: $('total-credits'),
+        errorBox: $('error-box'),
+        successBox: $('success-box'),
+        selectedCoursesContainer: $('selected-courses-container'),
+        selectedCoursesList: $('selected-courses-list')
     };
     
-    // Load courses
-    fetch('/api/courses')
-        .then(response => response.json())
-        .then(data => {
-            courseData = data.courses;
-            renderCourseTable(courseData);
-        })
-        .catch(() => showError('Failed to load course data. Please try refreshing the page.'));
+    // Initialize
+    loadCourses();
+    setupEventListeners();
+    
+    // Load courses from API
+    function loadCourses() {
+        fetch('/api/courses')
+            .then(response => response.json())
+            .then(data => {
+                courseData = data.courses;
+                renderCourseTable();
+            })
+            .catch(() => showMessage('Failed to load course data. Please refresh.', 'error'));
+    }
+    
+    // Setup all event listeners
+    function setupEventListeners() {
+        elements.searchField.addEventListener('input', e => renderCourseTable(e.target.value.toLowerCase()));
+        elements.previewButton.addEventListener('click', () => validateAndGenerate(generateTimetable));
+        elements.deselectAllButton.addEventListener('click', deselectAll);
         
-    // Event listeners
-    elements.searchField.addEventListener('input', function() {
-        renderCourseTable(courseData, this.value.toLowerCase());
-    });
+        // Go to top button
+        $('go-to-top').addEventListener('click', scrollToTop);
+        
+        // Download handlers
+        ['Image', 'Excel', 'CSV'].forEach(type => {
+            $(`download-${type.toLowerCase()}`).addEventListener('click', () => 
+                validateAndGenerate(() => window[`generateTimetable${type}`]())
+            );
+        });
+    }
     
-    elements.previewButton.addEventListener('click', () => {
-        if (selectedCourses.length === 0) {
-            showError('Please select at least one course.');
-            return;
-        }
-        generateTimetable();
-    });
-    
-    elements.deselectAllButton.addEventListener('click', () => {
-        selectedCourses = [];
-        totalCredits = 0;
-        updateTotalCredits();
-        renderCourseTable(courseData, elements.searchField.value.toLowerCase());
-        elements.timetableContainer.innerHTML = '';
-        elements.downloadOptions.style.display = 'none';
-        elements.selectedCoursesContainer.style.display = 'none';
-        showSuccess('All courses have been deselected.');
-    });
-    
-    elements.downloadImage.addEventListener('click', () => {
-        if (selectedCourses.length === 0) {
-            showError('Please select at least one course.');
-            return;
-        }
-        generateTimetableImage();
-    });
-    
-    elements.downloadExcel.addEventListener('click', () => {
-        if (selectedCourses.length === 0) {
-            showError('Please select at least one course.');
-            return;
-        }
-        generateTimetableExcel();
-    });
-    
-    elements.downloadCSV.addEventListener('click', () => {
-        if (selectedCourses.length === 0) {
-            showError('Please select at least one course.');
-            return;
-        }
-        generateTimetableCSV();
-    });
-    
-    function renderCourseTable(courses, searchQuery = '') {
+    // Render course table with optional search filter
+    function renderCourseTable(searchQuery = '') {
         const tbody = elements.courseTableBody;
-        tbody.innerHTML = '';
-        
-        const filteredCourses = courses.filter(course => 
+        const filteredCourses = courseData.filter(course => 
             course.code.toLowerCase().includes(searchQuery) || 
             course.name.toLowerCase().includes(searchQuery)
         );
         
         if (filteredCourses.length === 0) {
-            tbody.innerHTML = '<tr><td colspan="4">No courses found matching your search.</td></tr>';
+            tbody.innerHTML = '<tr><td colspan="4">No courses found.</td></tr>';
             return;
         }
         
-        filteredCourses.forEach(course => {
-            const row = document.createElement('tr');
-            row.innerHTML = `
+        tbody.innerHTML = filteredCourses.map(course => `
+            <tr>
                 <td>${course.code}</td>
                 <td>${course.name}</td>
                 <td>${course.credits}</td>
@@ -104,309 +79,256 @@ document.addEventListener('DOMContentLoaded', function() {
                                data-course-code="${course.code}" data-credits="${course.credits}">
                     </div>
                 </td>
-            `;
-            
-            const checkbox = row.querySelector('input[type="checkbox"]');
-            checkbox.addEventListener('change', function() {
-                const courseCode = this.dataset.courseCode;
-                const credits = parseInt(this.dataset.credits);
-                
-                if (this.checked) {
-                    if (!selectedCourses.includes(courseCode)) {
-                        selectedCourses.push(courseCode);
-                        totalCredits += credits;
-                    }
-                } else {
-                    const index = selectedCourses.indexOf(courseCode);
-                    if (index > -1) {
-                        selectedCourses.splice(index, 1);
-                        totalCredits -= credits;
-                    }
-                }
-                updateTotalCredits();
-                // displaySelectedCourses();
-            });
-            
-            tbody.appendChild(row);
+            </tr>
+        `).join('');
+        
+        // Add event listeners to checkboxes
+        tbody.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+            checkbox.addEventListener('change', handleCourseSelection);
         });
     }
     
+    // Handle course selection/deselection
+    function handleCourseSelection(e) {
+        const { courseCode, credits } = e.target.dataset;
+        const creditsNum = parseInt(credits);
+        
+        if (e.target.checked) {
+            if (!selectedCourses.includes(courseCode)) {
+                selectedCourses.push(courseCode);
+                totalCredits += creditsNum;
+            }
+        } else {
+            const index = selectedCourses.indexOf(courseCode);
+            if (index > -1) {
+                selectedCourses.splice(index, 1);
+                totalCredits -= creditsNum;
+            }
+        }
+        
+        updateTotalCredits();
+        updateSelectedCourses();
+    }
+    
+    // Update total credits display
     function updateTotalCredits() {
         elements.totalCreditsElement.textContent = totalCredits;
     }
     
-    function displaySelectedCourses() {
+    // Update selected courses display
+    function updateSelectedCourses() {
         if (selectedCourses.length === 0) {
             elements.selectedCoursesContainer.style.display = 'none';
             return;
         }
         
-        elements.selectedCoursesList.innerHTML = '';
-        
-        selectedCourses.forEach(courseCode => {
+        elements.selectedCoursesList.innerHTML = selectedCourses.map(courseCode => {
             const course = courseData.find(c => c.code === courseCode);
-            if (course) {
-                const courseItem = document.createElement('div');
-                courseItem.className = 'selected-course-item';
-                courseItem.innerHTML = `
+            return course ? `
+                <div class="selected-course-item">
                     <span class="selected-course-code">${course.code}</span>
                     <span class="selected-course-name">${course.name}</span>
                     <span class="selected-course-credits">${course.credits}C</span>
-                    <button class="remove-course-btn" data-course-code="${course.code}" data-credits="${course.credits}" title="Remove course">
-                        <i class="fa fa-times" aria-hidden="true"></i>
+                    <button class="remove-course-btn" onclick="removeCourse('${course.code}', ${course.credits})" title="Remove course">
+                        <i class="fa fa-times"></i>
                     </button>
-                `;
-                
-                // Add event listener for the remove button
-                const removeBtn = courseItem.querySelector('.remove-course-btn');
-                removeBtn.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    const courseCodeToRemove = this.dataset.courseCode;
-                    const creditsToRemove = parseInt(this.dataset.credits);
-                    
-                    // Remove from selectedCourses array
-                    const index = selectedCourses.indexOf(courseCodeToRemove);
-                    if (index > -1) {
-                        selectedCourses.splice(index, 1);
-                        totalCredits -= creditsToRemove;
-                        updateTotalCredits();
-                        
-                        // Update the course table to reflect the change
-                        renderCourseTable(courseData, elements.searchField.value.toLowerCase());
-                        
-                        // Update the selected courses display
-                        displaySelectedCourses();
-                        
-                        showSuccess(`${courseCodeToRemove} has been removed from your selection.`);
-                    }
-                });
-                
-                elements.selectedCoursesList.appendChild(courseItem);
-            }
-        });
+                </div>
+            ` : '';
+        }).join('');
         
         elements.selectedCoursesContainer.style.display = 'block';
-        elements.selectedCoursesContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
     
+    // Remove individual course (global function for onclick)
+    window.removeCourse = function(courseCode, credits) {
+        const index = selectedCourses.indexOf(courseCode);
+        if (index > -1) {
+            selectedCourses.splice(index, 1);
+            totalCredits -= credits;
+            updateTotalCredits();
+            renderCourseTable(elements.searchField.value.toLowerCase());
+            updateSelectedCourses();
+            showMessage(`${courseCode} removed from selection.`, 'success');
+        }
+    };
+    
+    // Deselect all courses
+    function deselectAll() {
+        selectedCourses = [];
+        totalCredits = 0;
+        updateTotalCredits();
+        renderCourseTable(elements.searchField.value.toLowerCase());
+        elements.timetableContainer.innerHTML = '';
+        elements.downloadOptions.style.display = 'none';
+        elements.selectedCoursesContainer.style.display = 'none';
+        showMessage('All courses deselected.', 'success');
+    }
+    
+    // Validate selection and execute callback
+    function validateAndGenerate(callback) {
+        if (selectedCourses.length === 0) {
+            showMessage('Please select at least one course.', 'error');
+            return;
+        }
+        callback();
+    }
+    
+    // Generate timetable
     function generateTimetable() {
-        displaySelectedCourses();
+        updateSelectedCourses();
         elements.timetableContainer.innerHTML = '<div class="loader" style="display:block;"></div>';
         
         fetch('/api/timetable', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ courses: selectedCourses }),
+            body: JSON.stringify({ courses: selectedCourses })
         })
         .then(response => response.json())
         .then(data => {
             if (data.error) {
-                showError(data.error);
+                showMessage(data.error, 'error');
                 return;
             }
             
             timetableData = data;
-            
-            // Get all time slots and sort them
-            const allTimeSlots = new Set();
-            Object.values(data).flat().forEach(entry => allTimeSlots.add(entry.time));
-            const sortedTimeSlots = Array.from(allTimeSlots).sort((a, b) => 
-                parseInt(a.split(':')[0]) - parseInt(b.split(':')[0])
-            );
-            
-            // Create table
-            const table = document.createElement('table');
-            table.className = 'timetable';
-            
-            // Header
-            const headerRow = document.createElement('tr');
-            headerRow.innerHTML = '<th class="time-header">Time</th>';
-            ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'].forEach(day => {
-                headerRow.innerHTML += `
-                    <th class="day-header">
-                        <span class="day-full">${day}</span>
-                        <span class="day-abbr" style="display:none">${day[0]}</span>
-                    </th>
-                `;
-            });
-            table.appendChild(document.createElement('thead')).appendChild(headerRow);
-            
-            // Body
-            const tbody = document.createElement('tbody');
-            const dayKeys = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday'];
-            
-            sortedTimeSlots.forEach(timeSlot => {
-                const row = document.createElement('tr');
-                row.innerHTML = `<td class="time-slot">${timeSlot}</td>`;
-                
-                dayKeys.forEach(dayKey => {
-                    const cell = document.createElement('td');
-                    const dayData = data[dayKey] || [];
-                    const courseEntry = dayData.find(entry => entry.time === timeSlot);
-                    
-                    if (courseEntry) {
-                        const parts = courseEntry.class.split(',').map(part => part.trim());
-                        const courseCell = document.createElement('div');
-                        courseCell.className = 'course-cell';
-                        
-                        if (parts[0]) {
-                            courseCell.innerHTML += `<span class="course-code">${parts[0]}</span>`;
-                        }
-                        if (parts[1]) {
-                            courseCell.innerHTML += `<span class="course-name">${parts[1]}</span>`;
-                        }
-                        if (parts[2]) {
-                            courseCell.innerHTML += `<span class="course-type">${parts[2]}</span>`;
-                        }
-                        if (parts[3]) {
-                            courseCell.innerHTML += `<span class="course-location">${parts[3]}</span>`;
-                        }
-                        
-                        cell.appendChild(courseCell);
-                    }
-                    
-                    row.appendChild(cell);
-                });
-                
-                tbody.appendChild(row);
-            });
-            
-            table.appendChild(tbody);
-            elements.timetableContainer.innerHTML = '';
-            elements.timetableContainer.appendChild(table);
-            
+            renderTimetable(data);
             elements.downloadOptions.style.display = 'flex';
-            elements.downloadOptions.scrollIntoView({ behavior: 'smooth' });
+            scrollToTop();
         })
         .catch(() => {
-            showError('Failed to generate timetable. Please try again.');
+            showMessage('Failed to generate timetable.', 'error');
             elements.timetableContainer.innerHTML = '';
         });
     }
     
-    function generateTimetableImage() {
-        const timetableElement = elements.timetableContainer.querySelector('.timetable');
-        if (!timetableElement) {
-            showError('Timetable not found. Please generate the timetable first.');
-            return;
-        }
+    // Render timetable HTML
+    function renderTimetable(data) {
+        const timeSlots = [...new Set(Object.values(data).flat().map(entry => entry.time))]
+            .sort((a, b) => parseInt(a.split(':')[0]) - parseInt(b.split(':')[0]));
         
-        showSuccess('Generating image, please wait...');
+        const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
+        const dayKeys = days.map(day => day.toLowerCase());
         
-        html2canvas(timetableElement, {
-            backgroundColor: '#ffffff',
-            scale: 2,
-            logging: false
-        }).then(canvas => {
-            const link = document.createElement('a');
-            link.href = canvas.toDataURL('image/png');
-            link.download = `Timetable_${formatDateTime()}.png`;
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            showSuccess('Image downloaded successfully!');
-        }).catch(() => {
-            showError('Failed to generate image. Please try again.');
-        });
+        const table = `
+            <table class="timetable">
+                <thead>
+                    <tr>
+                        <th>Time</th>
+                        ${days.map(day => `<th>${day}</th>`).join('')}
+                    </tr>
+                </thead>
+                <tbody>
+                    ${timeSlots.map(timeSlot => `
+                        <tr>
+                            <td class="time-slot">${timeSlot}</td>
+                            ${dayKeys.map(dayKey => {
+                                const courseEntry = (data[dayKey] || []).find(entry => entry.time === timeSlot);
+                                return `<td>${courseEntry ? formatCourseCell(courseEntry.class) : ''}</td>`;
+                            }).join('')}
+                        </tr>
+                    `).join('')}
+                </tbody>
+            </table>
+        `;
+        
+        elements.timetableContainer.innerHTML = table;
     }
     
-    function generateTimetableExcel() {
-        if (!timetableData) {
-            showError('No timetable data found. Please generate the timetable first.');
-            return;
-        }
+    // Format course cell content
+    function formatCourseCell(classInfo) {
+        const parts = classInfo.split(',').map(part => part.trim());
+        const spans = ['course-code', 'course-name', 'course-type', 'course-location'];
         
-        const allTimeSlots = new Set();
-        Object.values(timetableData).flat().forEach(entry => allTimeSlots.add(entry.time));
-        const sortedTimeSlots = Array.from(allTimeSlots).sort((a, b) => 
-            parseInt(a.split(':')[0]) - parseInt(b.split(':')[0])
-        );
+        return `<div class="course-cell">
+            ${parts.map((part, i) => part ? `<span class="${spans[i] || ''}">${part}</span>` : '').join('')}
+        </div>`;
+    }
+    
+    // Download functions
+    window.generateTimetableImage = function() {
+        const table = elements.timetableContainer.querySelector('.timetable');
+        if (!table) return showMessage('Generate timetable first.', 'error');
         
-        const excelData = [['Time', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']];
-        const dayNames = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday'];
+        showMessage('Generating image...', 'success');
+        html2canvas(table, { backgroundColor: '#ffffff', scale: 2 })
+            .then(canvas => downloadFile(canvas.toDataURL('image/png'), 'png'))
+            .catch(() => showMessage('Failed to generate image.', 'error'));
+    };
+    
+    window.generateTimetableExcel = function() {
+        if (!timetableData) return showMessage('Generate timetable first.', 'error');
         
-        sortedTimeSlots.forEach(timeSlot => {
+        const data = formatTableData();
+        const wb = XLSX.utils.book_new();
+        const ws = XLSX.utils.aoa_to_sheet(data);
+        XLSX.utils.book_append_sheet(wb, ws, "Timetable");
+        XLSX.writeFile(wb, `Timetable_${getTimestamp()}.xlsx`);
+        showMessage('Excel downloaded!', 'success');
+    };
+    
+    window.generateTimetableCSV = function() {
+        if (!timetableData) return showMessage('Generate timetable first.', 'error');
+        
+        const data = formatTableData();
+        const csv = data.map(row => row.map(cell => 
+            cell.includes(',') ? `"${cell}"` : cell
+        ).join(',')).join('\n');
+        
+        downloadFile(`data:text/csv;charset=utf-8,${encodeURIComponent(csv)}`, 'csv');
+        showMessage('CSV downloaded!', 'success');
+    };
+    
+    // Helper functions
+    function formatTableData() {
+        const timeSlots = [...new Set(Object.values(timetableData).flat().map(entry => entry.time))]
+            .sort((a, b) => parseInt(a.split(':')[0]) - parseInt(b.split(':')[0]));
+        
+        const header = ['Time', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
+        const rows = timeSlots.map(timeSlot => {
             const row = [timeSlot];
-            dayNames.forEach(day => {
-                const dayData = timetableData[day] || [];
-                const course = dayData.find(entry => entry.time === timeSlot);
+            ['monday', 'tuesday', 'wednesday', 'thursday', 'friday'].forEach(day => {
+                const course = (timetableData[day] || []).find(entry => entry.time === timeSlot);
                 row.push(course ? course.class : '');
             });
-            excelData.push(row);
+            return row;
         });
         
-        const wb = XLSX.utils.book_new();
-        const ws = XLSX.utils.aoa_to_sheet(excelData);
-        XLSX.utils.book_append_sheet(wb, ws, "Timetable");
-        XLSX.writeFile(wb, `Timetable_${formatDateTime()}.xlsx`);
-        
-        showSuccess('Excel file downloaded successfully!');
+        return [header, ...rows];
     }
     
-    function generateTimetableCSV() {
-        if (!timetableData) {
-            showError('No timetable data found. Please generate the timetable first.');
-            return;
-        }
-        
-        const allTimeSlots = new Set();
-        Object.values(timetableData).flat().forEach(entry => allTimeSlots.add(entry.time));
-        const sortedTimeSlots = Array.from(allTimeSlots).sort((a, b) => 
-            parseInt(a.split(':')[0]) - parseInt(b.split(':')[0])
-        );
-        
-        let csvContent = 'Time,Monday,Tuesday,Wednesday,Thursday,Friday\n';
-        const dayNames = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday'];
-        
-        sortedTimeSlots.forEach(timeSlot => {
-            const row = [timeSlot];
-            dayNames.forEach(day => {
-                const dayData = timetableData[day] || [];
-                const course = dayData.find(entry => entry.time === timeSlot);
-                const courseInfo = course ? course.class : '';
-                row.push(courseInfo.includes(',') ? `"${courseInfo}"` : courseInfo);
-            });
-            csvContent += row.join(',') + '\n';
-        });
-        
-        const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    function downloadFile(url, extension) {
         const link = document.createElement('a');
-        link.href = URL.createObjectURL(blob);
-        link.download = `Timetable_${formatDateTime()}.csv`;
+        link.href = url;
+        link.download = `Timetable_${getTimestamp()}.${extension}`;
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
-        URL.revokeObjectURL(link.href);
-        
-        showSuccess('CSV file downloaded successfully!');
+        if (url.startsWith('blob:')) URL.revokeObjectURL(url);
     }
     
-    function formatDateTime() {
+    function getTimestamp() {
         const now = new Date();
-        return now.getFullYear() + 
-               pad(now.getMonth() + 1) + 
-               pad(now.getDate()) + 
-               '_' + 
-               pad(now.getHours()) + 
-               pad(now.getMinutes()) + 
-               pad(now.getSeconds());
+        return [now.getFullYear(), now.getMonth() + 1, now.getDate()]
+            .map(n => n.toString().padStart(2, '0')).join('') + '_' +
+            [now.getHours(), now.getMinutes(), now.getSeconds()]
+            .map(n => n.toString().padStart(2, '0')).join('');
     }
     
-    function pad(number) {
-        return (number < 10 ? '0' : '') + number;
+    function showMessage(message, type) {
+        const box = type === 'error' ? elements.errorBox : elements.successBox;
+        const otherBox = type === 'error' ? elements.successBox : elements.errorBox;
+        
+        box.textContent = message;
+        box.style.display = 'block';
+        otherBox.style.display = 'none';
+        setTimeout(() => box.style.display = 'none', 5000);
     }
     
-    function showError(message) {
-        elements.errorBox.textContent = message;
-        elements.errorBox.style.display = 'block';
-        elements.successBox.style.display = 'none';
-        setTimeout(() => elements.errorBox.style.display = 'none', 5000);
-    }
-    
-    function showSuccess(message) {
-        elements.successBox.textContent = message;
-        elements.successBox.style.display = 'block';
-        elements.errorBox.style.display = 'none';
-        setTimeout(() => elements.successBox.style.display = 'none', 5000);
+    // Scroll to top function
+    function scrollToTop() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
     }
 });
